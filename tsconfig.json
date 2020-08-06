@@ -1,19 +1,22 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "module": "commonjs",
+    "outDir": "dist",
+    "rootDir": "src",
+    "lib": ["dom", "esnext"],
+    "module": "esnext",
     "target": "es5",
     "sourceMap": true,
     "declaration": true,
-    "strict": true,
-    "esModuleInterop": true
+    "strict": false,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "noEmit": true,
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*.ts"],
   "types": [
-    "node"
+    "node",
+    "jest"
   ],
-  "typeRoots": [
-    "node_modules/@types",
-  ]
+  "typeRoots": ["./node_modules/@types", "./src"]
 }
