@@ -1,9 +1,10 @@
 import YupTypeSchema from './YupTypeSchema';
+import YupTypeErrors from './YupTypeErrors';
 
 type StringTypeSchema = YupTypeSchema & {
     minLength?: number;
     maxLength?: number;
-    errors?: {
+    errors?: YupTypeErrors & {
         minLength?: string;
         maxLength?: string;
     };
