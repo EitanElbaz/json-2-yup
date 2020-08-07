@@ -73,7 +73,7 @@ function withMax(schema: NumberSchema, jsonSchema: NumberTypeSchema): NumberSche
 }
 
 function withLessThan(schema: NumberSchema, jsonSchema: NumberTypeSchema): NumberSchema {
-    return schema.max(jsonSchema.lessThan, jsonSchema?.errors?.lessThan);
+    return schema.lessThan(jsonSchema.lessThan, jsonSchema?.errors?.lessThan);
 }
 
 function withMoreThan(schema: NumberSchema, jsonSchema: NumberTypeSchema): NumberSchema {
@@ -85,7 +85,7 @@ function withPositive(schema: NumberSchema, jsonSchema: NumberTypeSchema): Numbe
 }
 
 function withNegative(schema: NumberSchema, jsonSchema: NumberTypeSchema): NumberSchema {
-    return schema.positive(jsonSchema?.errors?.negative);
+    return schema.negative(jsonSchema?.errors?.negative);
 }
 
 function withInteger(schema: NumberSchema, jsonSchema: NumberTypeSchema): NumberSchema {

@@ -3,35 +3,34 @@ import toYup from 'src/toYup';
 import NumberTypeSchema from 'src/types/NumberTypeSchema';
 import { NumberSchema } from 'yup';
 
-const errorMsg = 'Min 5';
+const errorMsg = 'More Than 5';
 
 const schema: NumberTypeSchema = {
     type: 'number',
     strict: true,
-    min: 5,
+    moreThan: 5,
     errors: {
-        min: errorMsg,
+        moreThan: errorMsg,
     },
 };
 
 const yupSchema = toYup(schema) as NumberSchema;
 
-test('min expect fail', async () => {
-    expect(yupSchema.isValidSync(4)).toBe(false);
-    expect(yupSchema.isValidSync(-1)).toBe(false);
-    expect(yupSchema.isValidSync(0)).toBe(false);
+test('moreThan expect fail', async () => {
+    expect(yupSchema.isValidSync(5)).toBe(false);
     expect(yupSchema.isValidSync([0])).toBe(false);
+    expect(yupSchema.isValidSync([5])).toBe(false);
     expect(yupSchema.isValidSync(Number.MIN_VALUE)).toBe(false);
     expect(yupSchema.isValidSync(Number.MIN_SAFE_INTEGER)).toBe(false);
 });
 
-test('min expect pass', async () => {
-    expect(yupSchema.isValidSync(5)).toBe(true);
+test('moreThan expect pass', async () => {
+    expect(yupSchema.isValidSync(6)).toBe(true);
     expect(yupSchema.isValidSync(Number.MAX_VALUE)).toBe(true);
     expect(yupSchema.isValidSync(Number.MAX_SAFE_INTEGER)).toBe(true);
 });
 
-test('min expect fail message', async () => {
-    const [error] = await to(yupSchema.validate(4));
+test('moreThan expect fail message', async () => {
+    const [error] = await to(yupSchema.validate(5));
     expect(error.message).toBe(errorMsg);
 });
