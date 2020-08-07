@@ -17,13 +17,11 @@ const schema: StringTypeSchema = {
 const yupSchema = toYup(schema) as StringSchema;
 
 test('minLength expect fail', async () => {
-    const valid = await yupSchema.isValid('what');
-    expect(valid).toBe(false);
+    expect(yupSchema.isValidSync('what')).toBe(false);
 });
 
 test('minLength expect pass', async () => {
-    const valid = await yupSchema.isValid('hello');
-    expect(valid).toBe(true);
+    expect(yupSchema.isValidSync('hello')).toBe(true);
 });
 
 test('minLength expect fail message', async () => {

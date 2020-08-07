@@ -16,15 +16,12 @@ const schema: StringTypeSchema = {
 const yupSchema = toYup(schema) as StringSchema;
 
 test('matches expect fail', async () => {
-    const valid = await yupSchema.isValid('hello');
-    expect(valid).toBe(false);
+    expect(yupSchema.isValidSync('hello')).toBe(false);
 });
 
 test('matches expect pass', async () => {
-    const valid1 = await yupSchema.isValid('hi');
-    const valid2 = await yupSchema.isValid('bye');
-    expect(valid1).toBe(true);
-    expect(valid2).toBe(true);
+    expect(yupSchema.isValidSync('hi')).toBe(true);
+    expect(yupSchema.isValidSync('bye')).toBe(true);
 });
 
 test('matches expect error message', async () => {
@@ -33,8 +30,7 @@ test('matches expect error message', async () => {
 });
 
 test('matches expect fail empty string', async () => {
-    const valid = await yupSchema.isValid('');
-    expect(valid).toBe(false);
+    expect(yupSchema.isValidSync('')).toBe(false);
 });
 
 test('matches expect ignore empty string', async () => {
@@ -46,6 +42,5 @@ test('matches expect ignore empty string', async () => {
             matches: errorMsg,
         },
     };
-    const valid = await toYup(excludeEmptyStrings).isValid('');
-    expect(valid).toBe(true);
+    expect(toYup(excludeEmptyStrings).isValidSync('')).toBe(true);
 });

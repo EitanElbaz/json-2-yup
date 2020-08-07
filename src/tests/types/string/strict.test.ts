@@ -9,28 +9,22 @@ const schema: StringTypeSchema = {
 const yupSchema = toYup(schema) as StringSchema;
 
 test('strict string type', async () => {
-    const valid = await yupSchema.isValid('hello');
-    expect(valid).toBe(true);
+    expect(yupSchema.isValidSync('hello')).toBe(true);
 });
 
 test('strict string type - number value', async () => {
-    const valid = await yupSchema.isValid(1);
-    expect(valid).toBe(false);
+    expect(yupSchema.isValidSync(1)).toBe(false);
 });
 
 test('strict string type - boolean value', async () => {
-    const validTrue = await yupSchema.isValid(true);
-    const validFalse = await yupSchema.isValid(false);
-    expect(validTrue).toBe(false);
-    expect(validFalse).toBe(false);
+    expect(yupSchema.isValidSync(true)).toBe(false);
+    expect(yupSchema.isValidSync(false)).toBe(false);
 });
 
 test('strict string type - array value', async () => {
-    const valid = await yupSchema.isValid([]);
-    expect(valid).toBe(false);
+    expect(yupSchema.isValidSync([])).toBe(false);
 });
 
 test('strict string type - object value', async () => {
-    const valid = await yupSchema.isValid({});
-    expect(valid).toBe(false);
+    expect(yupSchema.isValidSync({})).toBe(false);
 });
