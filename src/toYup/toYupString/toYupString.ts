@@ -21,6 +21,10 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
         yupSchema = withMatches(yupSchema, jsonSchema);
     }
 
+    if (jsonSchema.required === true) {
+        yupSchema = withRequired(yupSchema, jsonSchema);
+    }
+
     if (jsonSchema.strict) {
         yupSchema = withStrict(yupSchema, jsonSchema);
     }
@@ -41,6 +45,10 @@ function withMatches(schema: StringSchema, jsonSchema: StringTypeSchema): String
         message: jsonSchema?.errors?.matches,
         excludeEmptyString: jsonSchema.matches.excludeEmptyString || false,
     });
+}
+
+function withRequired(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
+    return schema.required(jsonSchema?.errors?.required);
 }
 
 function withStrict(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {

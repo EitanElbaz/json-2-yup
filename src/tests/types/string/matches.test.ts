@@ -3,7 +3,7 @@ import to from 'await-to-js';
 import StringTypeSchema from 'src/types/StringTypeSchema';
 import toYup from 'src/toYup';
 
-const errorMsg = 'Must be "hi" or "bye';
+const errorMsg = 'Must be "hi" or "bye"';
 const schema: StringTypeSchema = {
     type: 'string',
     strict: true,
@@ -38,9 +38,13 @@ test('matches expect fail empty string', async () => {
 });
 
 test('matches expect ignore empty string', async () => {
-    const excludeEmptyStrings = {
-        ...schema,
-        matches: { ...schema.matches, excludeEmptyString: true },
+    const excludeEmptyStrings: StringTypeSchema = {
+        type: 'string',
+        strict: true,
+        matches: { regex: '(hi|bye)', excludeEmptyString: true },
+        errors: {
+            matches: errorMsg,
+        },
     };
     const valid = await toYup(excludeEmptyStrings).isValid('');
     expect(valid).toBe(true);
