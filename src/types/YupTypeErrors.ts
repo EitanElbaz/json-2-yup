@@ -1,5 +1,5 @@
 type YupTypeErrors = {
-    required?: boolean;
+    required?: string;
 };
 
 export default YupTypeErrors;

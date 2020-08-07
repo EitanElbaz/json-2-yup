@@ -17,6 +17,10 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
         yupSchema = withMinLength(yupSchema, jsonSchema);
     }
 
+    if (jsonSchema.matches) {
+        yupSchema = withMatches(yupSchema, jsonSchema);
+    }
+
     if (jsonSchema.strict) {
         yupSchema = withStrict(yupSchema, jsonSchema);
     }
@@ -30,6 +34,13 @@ function withMaxLength(schema: StringSchema, jsonSchema: StringTypeSchema): Stri
 
 function withMinLength(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
     return schema.min(jsonSchema.minLength, jsonSchema?.errors?.minLength);
+}
+
+function withMatches(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
+    return schema.matches(RegExp(jsonSchema.matches.regex), {
+        message: jsonSchema?.errors?.matches,
+        excludeEmptyString: jsonSchema.matches.excludeEmptyString || false,
+    });
 }
 
 function withStrict(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
