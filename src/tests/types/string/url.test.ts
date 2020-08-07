@@ -7,14 +7,14 @@ const errorMsg = 'Email address is not valid';
 const schema: StringTypeSchema = {
     type: 'string',
     strict: true,
-    format: 'email',
+    format: 'url',
     errors: {
-        email: errorMsg,
+        url: errorMsg,
     },
 };
 const yupSchema = toYup(schema) as StringSchema;
 
-test('email expect fail', async () => {
+test('url expect fail', async () => {
     expect(yupSchema.isValidSync('whats')).toBe(false);
     expect(yupSchema.isValidSync('asd@example')).toBe(false);
     expect(yupSchema.isValidSync('asd+132@a')).toBe(false);
@@ -22,17 +22,16 @@ test('email expect fail', async () => {
     expect(yupSchema.isValidSync(12334)).toBe(false);
 });
 
-test('email expect pass', async () => {
-    expect(yupSchema.isValidSync('something@example.com')).toBe(true);
-    expect(yupSchema.isValidSync('something+123@example.com')).toBe(true);
-    expect(yupSchema.isValidSync('some_thing+123@example.com')).toBe(true);
-    expect(yupSchema.isValidSync('some_thing+hello@example.com')).toBe(true);
-    expect(yupSchema.isValidSync('some.thing+hello@example.com')).toBe(true);
-    expect(yupSchema.isValidSync('some.thing+123@example.com')).toBe(true);
-    expect(yupSchema.isValidSync('some.thing@example.com')).toBe(true);
+test('url expect pass', async () => {
+    expect(yupSchema.isValidSync('http://something.example.com')).toBe(true);
+    expect(yupSchema.isValidSync('http://example.com')).toBe(true);
+    expect(yupSchema.isValidSync('http://example.com/some/path')).toBe(true);
+    expect(yupSchema.isValidSync('http://example.com/some/path?with=query&string=value')).toBe(
+        true,
+    );
 });
 
-test('email expect fail message', async () => {
+test('url expect fail message', async () => {
     const [error] = await to(yupSchema.validate('123'));
     expect(error.message).toBe(errorMsg);
 });
