@@ -5,10 +5,13 @@ type StringTypeSchema = YupTypeSchema & {
     minLength?: number;
     maxLength?: number;
     matches?: { regex: string; excludeEmptyString?: boolean };
+    format: 'email' | 'url';
     errors?: YupTypeErrors & {
         minLength?: string;
         maxLength?: string;
         matches?: string;
+        email?: string;
+        url?: string;
     };
 };
 

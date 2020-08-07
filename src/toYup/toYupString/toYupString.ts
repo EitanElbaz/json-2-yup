@@ -21,6 +21,14 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
         yupSchema = withMatches(yupSchema, jsonSchema);
     }
 
+    if (jsonSchema.format === 'email') {
+        yupSchema = withEmail(yupSchema, jsonSchema);
+    }
+
+    if (jsonSchema.format === 'url') {
+        yupSchema = withUrl(yupSchema, jsonSchema);
+    }
+
     if (jsonSchema.required === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
     }
@@ -38,6 +46,14 @@ function withMaxLength(schema: StringSchema, jsonSchema: StringTypeSchema): Stri
 
 function withMinLength(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
     return schema.min(jsonSchema.minLength, jsonSchema?.errors?.minLength);
+}
+
+function withEmail(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
+    return schema.email(jsonSchema?.errors?.email);
+}
+
+function withUrl(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
+    return schema.url(jsonSchema?.errors?.url);
 }
 
 function withMatches(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
