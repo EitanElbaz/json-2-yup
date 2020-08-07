@@ -9,10 +9,6 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
         yupSchema = withMaxLength(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.maxLength) {
-        yupSchema = withMaxLength(yupSchema, jsonSchema);
-    }
-
     if (jsonSchema.minLength) {
         yupSchema = withMinLength(yupSchema, jsonSchema);
     }
@@ -64,16 +60,16 @@ function withMaxLength(schema: StringSchema, jsonSchema: StringTypeSchema): Stri
     return schema.max(jsonSchema.maxLength, jsonSchema?.errors?.maxLength);
 }
 
+function withMinLength(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
+    return schema.min(jsonSchema.minLength, jsonSchema?.errors?.minLength);
+}
+
 function withLowercase(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
     return schema.lowercase(jsonSchema?.errors?.lowercase);
 }
 
 function withUppercase(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
     return schema.uppercase(jsonSchema?.errors?.uppercase);
-}
-
-function withMinLength(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
-    return schema.min(jsonSchema.minLength, jsonSchema?.errors?.minLength);
 }
 
 function withEmail(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
