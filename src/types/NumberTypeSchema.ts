@@ -1,4 +1,4 @@
-import YupTypeSchema from './YupTypeSchema';
+import YupTypeSchema from 'src/types/YupTypeSchema';
 
 type NumberTypeSchema = YupTypeSchema & {
     type: 'number';

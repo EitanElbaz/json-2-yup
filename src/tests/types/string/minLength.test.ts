@@ -1,7 +1,7 @@
 import { StringSchema } from 'yup';
 import to from 'await-to-js';
-import StringTypeSchema from '../../../types/StringTypeSchema';
-import toYup from '../../../toYup';
+import StringTypeSchema from 'src/types/StringTypeSchema';
+import toYup from 'src/toYup';
 
 const errorMsg = 'Min 5 chars';
 

@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { StringSchema } from 'yup';
-import StringTypeSchema from '../../types/StringTypeSchema';
+import { StringTypeSchema } from 'src/types';
 
 const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
     let yupSchema = yup.string();

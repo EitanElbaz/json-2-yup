@@ -1,6 +1,6 @@
 import { StringSchema } from 'yup';
-import StringTypeSchema from '../../../types/StringTypeSchema';
-import toYup from '../../../toYup';
+import StringTypeSchema from 'src/types/StringTypeSchema';
+import toYup from 'src/toYup';
 
 const schema: StringTypeSchema = {
     type: 'string',
