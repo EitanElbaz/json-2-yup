@@ -17,6 +17,14 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
         yupSchema = withMinLength(yupSchema, jsonSchema);
     }
 
+    if (jsonSchema.case === 'lowercase') {
+        yupSchema = withLowercase(yupSchema, jsonSchema);
+    }
+
+    if (jsonSchema.case === 'uppercase') {
+        yupSchema = withUppercase(yupSchema, jsonSchema);
+    }
+
     if (jsonSchema.matches) {
         yupSchema = withMatches(yupSchema, jsonSchema);
     }
@@ -42,6 +50,14 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
 
 function withMaxLength(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
     return schema.max(jsonSchema.maxLength, jsonSchema?.errors?.maxLength);
+}
+
+function withLowercase(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
+    return schema.lowercase(jsonSchema?.errors?.lowercase);
+}
+
+function withUppercase(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
+    return schema.uppercase(jsonSchema?.errors?.uppercase);
 }
 
 function withMinLength(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
