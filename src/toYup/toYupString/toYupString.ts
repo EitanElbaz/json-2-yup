@@ -37,6 +37,14 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
         yupSchema = withUrl(yupSchema, jsonSchema);
     }
 
+    if (Array.isArray(jsonSchema.oneOf)) {
+        yupSchema = withOneOf(yupSchema, jsonSchema);
+    }
+
+    if (Array.isArray(jsonSchema.notOneOf)) {
+        yupSchema = withNotOneOf(yupSchema, jsonSchema);
+    }
+
     if (jsonSchema.required === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
     }
@@ -77,6 +85,14 @@ function withMatches(schema: StringSchema, jsonSchema: StringTypeSchema): String
         message: jsonSchema?.errors?.matches,
         excludeEmptyString: jsonSchema.matches.excludeEmptyString || false,
     });
+}
+
+function withOneOf(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
+    return schema.oneOf(jsonSchema.oneOf, jsonSchema?.errors?.oneOf);
+}
+
+function withNotOneOf(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
+    return schema.notOneOf(jsonSchema.notOneOf, jsonSchema?.errors?.notOneOf);
 }
 
 function withRequired(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {

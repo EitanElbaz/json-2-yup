@@ -8,6 +8,8 @@ type StringTypeSchema = YupTypeSchema & {
     uppercase?: number;
     matches?: { regex: string; excludeEmptyString?: boolean };
     format?: 'email' | 'url';
+    oneOf?: string[];
+    notOneOf?: string[];
     errors?: YupTypeErrors & {
         minLength?: string;
         maxLength?: string;
@@ -16,6 +18,8 @@ type StringTypeSchema = YupTypeSchema & {
         matches?: string;
         email?: string;
         url?: string;
+        oneOf?: string;
+        notOneOf?: string;
     };
 };
 

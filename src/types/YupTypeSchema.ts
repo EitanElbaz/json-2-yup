@@ -1,4 +1,4 @@
-import DataType from '~/types/DataType';
+import DataType from 'src/types/DataType';
 
 type YupTypeSchema = {
     type: DataType;
