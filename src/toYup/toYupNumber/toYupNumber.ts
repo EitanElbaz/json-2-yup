@@ -5,6 +5,10 @@ import { NumberTypeSchema } from 'src/types';
 const toYupNumber = (jsonSchema: NumberTypeSchema): NumberSchema => {
     let yupSchema = yup.number();
 
+    if (jsonSchema.round != null) {
+        yupSchema = withRound(yupSchema, jsonSchema);
+    }
+
     if (jsonSchema.min) {
         yupSchema = withMin(yupSchema, jsonSchema);
     }
@@ -39,14 +43,6 @@ const toYupNumber = (jsonSchema: NumberTypeSchema): NumberSchema => {
 
     if (Array.isArray(jsonSchema.notOneOf)) {
         yupSchema = withNotOneOf(yupSchema, jsonSchema);
-    }
-
-    if (jsonSchema.truncate === true) {
-        yupSchema = withTruncate(yupSchema, jsonSchema);
-    }
-
-    if (jsonSchema.round != null) {
-        yupSchema = withRound(yupSchema, jsonSchema);
     }
 
     if (jsonSchema.nullable != null) {
@@ -98,10 +94,6 @@ function withOneOf(schema: NumberSchema, jsonSchema: NumberTypeSchema): NumberSc
 
 function withNotOneOf(schema: NumberSchema, jsonSchema: NumberTypeSchema): NumberSchema {
     return schema.notOneOf(jsonSchema.notOneOf, jsonSchema?.errors?.notOneOf);
-}
-
-function withTruncate(schema: NumberSchema, jsonSchema: NumberTypeSchema): NumberSchema {
-    return schema.truncate();
 }
 
 function withRound(schema: NumberSchema, jsonSchema: NumberTypeSchema): NumberSchema {

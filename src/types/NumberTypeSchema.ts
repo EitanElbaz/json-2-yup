@@ -11,10 +11,9 @@ type NumberTypeSchema = YupTypeSchema & {
     integer?: boolean;
     oneOf?: number[];
     notOneOf?: number[];
-    truncate?: boolean;
     round?: 'floor' | 'ceil' | 'trunc' | 'round';
     nullable?: boolean;
-    errors: YupTypeErrors & {
+    errors?: YupTypeErrors & {
         min?: string;
         max?: string;
         lessThan?: string;
