@@ -45,6 +45,10 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
         yupSchema = withNotOneOf(yupSchema, jsonSchema);
     }
 
+    if (jsonSchema.nullable != null) {
+        yupSchema = withNullable(yupSchema, jsonSchema);
+    }
+
     if (jsonSchema.required === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
     }
@@ -93,6 +97,10 @@ function withOneOf(schema: StringSchema, jsonSchema: StringTypeSchema): StringSc
 
 function withNotOneOf(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
     return schema.notOneOf(jsonSchema.notOneOf, jsonSchema?.errors?.notOneOf);
+}
+
+function withNullable(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {
+    return schema.nullable(jsonSchema.nullable);
 }
 
 function withRequired(schema: StringSchema, jsonSchema: StringTypeSchema): StringSchema {

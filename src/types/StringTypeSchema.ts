@@ -10,6 +10,7 @@ type StringTypeSchema = YupTypeSchema & {
     format?: 'email' | 'url';
     oneOf?: string[];
     notOneOf?: string[];
+    nullable?: boolean;
     errors?: YupTypeErrors & {
         minLength?: string;
         maxLength?: string;
