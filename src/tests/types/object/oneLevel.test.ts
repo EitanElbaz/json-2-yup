@@ -1,10 +1,7 @@
-import NumberTypeSchema from 'src/types/NumberTypeSchema';
 import toYup from 'src/toYup';
-import { NumberSchema, ObjectSchema, ValidationError } from 'yup';
+import { ObjectSchema, ValidationError } from 'yup';
 import ObjectTypeSchema from 'src/types/ObjectTypeSchema';
 import to from 'await-to-js';
-
-const errorMsg = 'Must be integer';
 
 const schema: ObjectTypeSchema = {
     type: 'object',
@@ -59,6 +56,23 @@ const schema: ObjectTypeSchema = {
                 required: 'count required',
             },
         },
+        numbers: {
+            type: 'array',
+            required: true,
+            strict: true,
+            min: 2,
+            of: {
+                type: 'number',
+                min: 1,
+                errors: {
+                    min: 'sub number array value must be more than 1',
+                },
+            },
+            errors: {
+                min: 'must have at least 2 numbers',
+                required: 'numbers required',
+            },
+        },
     },
 };
 
@@ -71,6 +85,7 @@ test('Object schema expect success', async () => {
             lastName: 'Smith',
             email: 'test@example.com',
             count: 6,
+            numbers: [1, 2],
         }),
     ).toBe(true);
 });
@@ -83,6 +98,7 @@ test('Object schema expect too short error messages', async () => {
                 lastName: 'a',
                 email: 'a@a.com',
                 count: 4,
+                numbers: [2],
             },
             { abortEarly: false },
         ),
@@ -92,6 +108,7 @@ test('Object schema expect too short error messages', async () => {
     expect(yupError.errors.includes('last name too short')).toBe(true);
     expect(yupError.errors.includes('email too short')).toBe(true);
     expect(yupError.errors.includes('count too low')).toBe(true);
+    expect(yupError.errors.includes('must have at least 2 numbers')).toBe(true);
 });
 
 test('Object schema expect too long error messages', async () => {
@@ -121,6 +138,7 @@ test('Object schema expect required error messages', async () => {
                 lastName: '',
                 email: '',
                 count: undefined,
+                numbers: undefined,
             },
             { abortEarly: false },
         ),
@@ -130,4 +148,22 @@ test('Object schema expect required error messages', async () => {
     expect(yupError.errors.includes('last name required')).toBe(true);
     expect(yupError.errors.includes('email required')).toBe(true);
     expect(yupError.errors.includes('count required')).toBe(true);
+    expect(yupError.errors.includes('numbers required')).toBe(true);
+});
+
+test('Object schema expect sub numbers array min error message', async () => {
+    const [error] = await to(
+        yupSchema.validate(
+            {
+                firstName: '',
+                lastName: '',
+                email: '',
+                count: undefined,
+                numbers: [1, 0],
+            },
+            { abortEarly: false },
+        ),
+    );
+    const yupError: ValidationError = error as ValidationError;
+    expect(yupError.errors.includes('sub number array value must be more than 1')).toBe(true);
 });
