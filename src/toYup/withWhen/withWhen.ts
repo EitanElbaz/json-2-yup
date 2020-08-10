@@ -9,7 +9,7 @@ const withWhen = <T extends YupTypeSchema>(schema: Schema<any>, jsonSchema: When
             schema = schema.when(fields, {
                 is,
                 then: toYup(then),
-                otherwise: otherwise ? toYup(otherwise) : undefined,
+                otherwise: otherwise != null ? toYup(otherwise) : undefined,
             });
         });
     }

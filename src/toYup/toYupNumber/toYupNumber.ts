@@ -10,19 +10,19 @@ const toYupNumber = (jsonSchema: NumberTypeSchema): NumberSchema => {
         yupSchema = withRound(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.min) {
+    if (jsonSchema.min != null) {
         yupSchema = withMin(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.max) {
+    if (jsonSchema.max != null) {
         yupSchema = withMax(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.lessThan) {
+    if (jsonSchema.lessThan != null) {
         yupSchema = withLessThan(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.moreThan) {
+    if (jsonSchema.moreThan != null) {
         yupSchema = withMoreThan(yupSchema, jsonSchema);
     }
 

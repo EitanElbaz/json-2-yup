@@ -6,11 +6,11 @@ import withWhen from 'src/toYup/withWhen';
 const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
     let yupSchema = yup.string();
 
-    if (jsonSchema.maxLength) {
+    if (jsonSchema.maxLength != null) {
         yupSchema = withMaxLength(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.minLength) {
+    if (jsonSchema.minLength != null) {
         yupSchema = withMinLength(yupSchema, jsonSchema);
     }
 
@@ -22,7 +22,7 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
         yupSchema = withUppercase(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.matches) {
+    if (jsonSchema.matches != null) {
         yupSchema = withMatches(yupSchema, jsonSchema);
     }
 
