@@ -36,7 +36,7 @@ const toYupArray = <T>(jsonSchema: ArrayTypeSchema): ArraySchema<T> => {
 };
 
 function withOf(schema: ArraySchema<any>, jsonSchema: ArrayTypeSchema): ArraySchema<any> {
-    return schema.of(toYup(jsonSchema) as Schema<any>);
+    return schema.of(toYup(jsonSchema.of) as Schema<any>);
 }
 
 function withMin(schema: ArraySchema<any>, jsonSchema: ArrayTypeSchema): ArraySchema<any> {
