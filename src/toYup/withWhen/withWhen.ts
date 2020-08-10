@@ -11,7 +11,6 @@ const withWhen = <T extends YupTypeSchema>(schema: Schema<any>, jsonSchema: When
                 then: toYup(then),
                 otherwise: otherwise ? toYup(otherwise) : undefined,
             });
-            p;
         });
     }
 
