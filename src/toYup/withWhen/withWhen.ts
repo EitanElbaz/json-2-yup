@@ -3,7 +3,10 @@ import WhenSchema from 'src/types/WhenSchema';
 import { Schema } from 'yup';
 import toYup from 'src/toYup';
 
-const withWhen = <T extends YupTypeSchema>(schema: Schema<any>, jsonSchema: WhenSchema<T>[]) => {
+const withWhen = <T extends YupTypeSchema, U extends Schema<any>>(
+    schema: U,
+    jsonSchema: WhenSchema<T>[],
+): U => {
     if (Array.isArray(jsonSchema) && jsonSchema.length > 0) {
         jsonSchema.forEach(({ fields, is, then, otherwise }) => {
             schema = schema.when(fields, {
