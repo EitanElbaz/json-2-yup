@@ -7,31 +7,30 @@ const schema: ObjectTypeSchema = {
     type: 'object',
     strict: true,
     properties: {
-        allowedToBuy: {
+        shareName: {
             type: 'boolean',
             strict: true,
             required: true,
         },
-        sweets: {
-            type: 'number',
+        name: {
+            type: 'string',
             strict: true,
-            required: true,
             when: [
                 {
-                    fields: 'allowedToBuy',
+                    fields: 'shareName',
                     is: true,
                     then: {
-                        type: 'number',
-                        min: 1,
+                        type: 'string',
+                        minLength: 1,
                         errors: {
-                            min: 'Must buy at least 1 when allowedToBuy is true',
+                            minLength: 'Must fill name in when shareName is true',
                         },
                     },
                     otherwise: {
-                        type: 'number',
-                        max: 0,
+                        type: 'string',
+                        maxLength: 0,
                         errors: {
-                            max: "Can't buy any when allowedToBuy is false",
+                            maxLength: 'Must not fill name in when shareName is true',
                         },
                     },
                 },
@@ -42,55 +41,56 @@ const schema: ObjectTypeSchema = {
 
 const yupSchema = toYup(schema) as ObjectSchema;
 
-test('when number expect fail', async () => {
+test('when string expect fail', async () => {
     expect(
         yupSchema.isValidSync({
-            allowedToBuy: true,
-            sweets: 0,
+            shareName: true,
+            name: '',
         }),
     ).toBe(false);
 
     expect(
         yupSchema.isValidSync({
-            allowedToBuy: false,
-            sweets: 1,
+            shareName: false,
+            name: 'William',
         }),
     ).toBe(false);
 });
 
-test('when number expect pass', async () => {
+test('when string expect pass', async () => {
     expect(
         yupSchema.isValidSync({
-            allowedToBuy: true,
-            sweets: 5,
+            shareName: true,
+            name: 'William',
         }),
     ).toBe(true);
+
     expect(
         yupSchema.isValidSync({
-            allowedToBuy: false,
-            sweets: 0,
+            shareName: false,
+            name: '',
         }),
     ).toBe(true);
 });
 
-test('when number allowedToBuy true expect errors', async () => {
+test('when string shareName true expect errors', async () => {
     const [error] = await to(
         yupSchema.validate({
-            allowedToBuy: true,
-            sweets: 0,
+            shareName: true,
+            name: '',
         }),
     );
     const yupError = error as ValidationError;
-    expect(yupError.errors).toContain('Must buy at least 1 when allowedToBuy is true');
+    expect(yupError.errors).toContain('Must fill name in when shareName is true');
 });
 
-test('when number allowedToBuy false expect errors', async () => {
+test('when string shareName false expect errors', async () => {
     const [error] = await to(
         yupSchema.validate({
-            allowedToBuy: false,
-            sweets: 1,
+            shareName: false,
+            name: 'William',
         }),
     );
     const yupError = error as ValidationError;
-    expect(yupError.errors).toContain("Can't buy any when allowedToBuy is false");
+    expect(yupError.errors).toContain('Must not fill name in when shareName is true');
 });
