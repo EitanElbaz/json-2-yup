@@ -72,7 +72,7 @@ test('when boolean manyNumbers true expect errors', async () => {
     expect(yupError.errors).toContain('Min 2 items when manyNumbers is true');
 });
 
-test('when boolean allowedToBuy false expect errors', async () => {
+test('when boolean manyNumbers false expect errors', async () => {
     const [error] = await to(
         yupSchema.validate({
             manyNumbers: false,
