@@ -18,7 +18,7 @@ const toYupBoolean = (jsonSchema: BooleanTypeSchema): BooleanSchema => {
         yupSchema = withStrict(yupSchema, jsonSchema);
     }
 
-    withWhen(yupSchema, jsonSchema.when);
+    yupSchema = withWhen(yupSchema, jsonSchema.when) as BooleanSchema;
 
     return yupSchema;
 };

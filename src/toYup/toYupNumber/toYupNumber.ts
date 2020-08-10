@@ -58,7 +58,7 @@ const toYupNumber = (jsonSchema: NumberTypeSchema): NumberSchema => {
         yupSchema = withStrict(yupSchema, jsonSchema);
     }
 
-    withWhen(yupSchema, jsonSchema.when);
+    yupSchema = withWhen(yupSchema, jsonSchema.when) as NumberSchema;
 
     return yupSchema;
 };

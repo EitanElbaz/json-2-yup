@@ -54,7 +54,7 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
         yupSchema = withStrict(yupSchema, jsonSchema);
     }
 
-    withWhen(yupSchema, jsonSchema.when);
+    yupSchema = withWhen(yupSchema, jsonSchema.when) as StringSchema;
 
     return yupSchema;
 };

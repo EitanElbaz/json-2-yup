@@ -6,7 +6,7 @@ import toYup from 'src/toYup';
 const withWhen = <T extends YupTypeSchema>(schema: Schema<any>, jsonSchema: WhenSchema<T>[]) => {
     if (Array.isArray(jsonSchema) && jsonSchema.length > 0) {
         jsonSchema.forEach(({ fields, is, then, otherwise }) => {
-            schema.when(fields, {
+            schema = schema.when(fields, {
                 is,
                 then: toYup(then),
                 otherwise: otherwise ? toYup(otherwise) : undefined,
