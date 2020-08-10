@@ -1,10 +1,7 @@
-import NumberTypeSchema from 'src/types/NumberTypeSchema';
 import toYup from 'src/toYup';
-import { NumberSchema, ObjectSchema, ValidationError } from 'yup';
+import { ObjectSchema, ValidationError } from 'yup';
 import ObjectTypeSchema from 'src/types/ObjectTypeSchema';
 import to from 'await-to-js';
-
-const errorMsg = 'Must be integer';
 
 const schema: ObjectTypeSchema = {
     type: 'object',
@@ -38,6 +35,23 @@ const schema: ObjectTypeSchema = {
                         required: 'town required',
                     },
                 },
+                numbers: {
+                    type: 'array',
+                    required: true,
+                    strict: true,
+                    min: 2,
+                    of: {
+                        type: 'number',
+                        min: 1,
+                        errors: {
+                            min: 'sub sub number array value must be more than 1',
+                        },
+                    },
+                    errors: {
+                        min: 'must have at least 2 numbers',
+                        required: 'numbers required',
+                    },
+                },
                 sweets: {
                     type: 'object',
                     strict: true,
@@ -65,7 +79,12 @@ test('Object schema expect success', async () => {
     expect(
         yupSchema.isValidSync({
             name: 'Will',
-            address: { streetName: 'some road', town: 'London', sweets: { count: 10 } },
+            address: {
+                streetName: 'some road',
+                town: 'London',
+                numbers: [2, 3],
+                sweets: { count: 10 },
+            },
         }),
     ).toBe(true);
 });
@@ -91,6 +110,7 @@ test('Object schema expect required error messages', async () => {
     expect(yupError.errors.includes('streetName required')).toBe(true);
     expect(yupError.errors.includes('town required')).toBe(true);
     expect(yupError.errors.includes('sweet count required')).toBe(true);
+    expect(yupError.errors.includes('numbers required')).toBe(true);
 
     const [error2] = await to(
         yupSchema.validate(
@@ -99,6 +119,7 @@ test('Object schema expect required error messages', async () => {
                 address: {
                     streetName: '',
                     town: '',
+                    numbers: [0, 1],
                     sweets: {
                         count: -1,
                     },
@@ -109,4 +130,19 @@ test('Object schema expect required error messages', async () => {
     );
     const yupError2: ValidationError = error2 as ValidationError;
     expect(yupError2.errors.includes('sweet count must be positive')).toBe(true);
+    expect(yupError2.errors.includes('sub sub number array value must be more than 1')).toBe(true);
+
+    const [error3] = await to(
+        yupSchema.validate(
+            {
+                name: '',
+                address: {
+                    numbers: [2],
+                },
+            },
+            { abortEarly: false },
+        ),
+    );
+    const yupError3: ValidationError = error3 as ValidationError;
+    expect(yupError3.errors.includes('must have at least 2 numbers')).toBe(true);
 });
