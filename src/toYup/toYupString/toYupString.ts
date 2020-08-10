@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 import { StringSchema } from 'yup';
 import { StringTypeSchema } from 'src/types';
+import withWhen from 'src/toYup/withWhen';
 
 const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
     let yupSchema = yup.string();
@@ -52,6 +53,8 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
     if (jsonSchema.strict) {
         yupSchema = withStrict(yupSchema, jsonSchema);
     }
+
+    withWhen(yupSchema, jsonSchema.when);
 
     return yupSchema;
 };

@@ -1,5 +1,6 @@
 import YupTypeSchema from 'src/types/YupTypeSchema';
 import YupTypeErrors from 'src/types/YupTypeErrors';
+import WhenSchema from 'src/types/WhenSchema';
 
 type NumberTypeSchema = YupTypeSchema & {
     type: 'number';
@@ -24,6 +25,7 @@ type NumberTypeSchema = YupTypeSchema & {
         oneOf?: string;
         notOneOf?: string;
     };
+    when?: WhenSchema<NumberTypeSchema>[];
 };
 
 export default NumberTypeSchema;

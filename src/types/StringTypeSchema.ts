@@ -1,5 +1,6 @@
 import YupTypeErrors from 'src/types/YupTypeErrors';
 import YupTypeSchema from 'src/types/YupTypeSchema';
+import WhenSchema from 'src/types/WhenSchema';
 
 type StringTypeSchema = YupTypeSchema & {
     minLength?: number;
@@ -22,6 +23,7 @@ type StringTypeSchema = YupTypeSchema & {
         oneOf?: string;
         notOneOf?: string;
     };
+    when?: WhenSchema<StringTypeSchema>[];
 };
 
 export default StringTypeSchema;

@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 import { NumberSchema } from 'yup';
 import { NumberTypeSchema } from 'src/types';
+import withWhen from 'src/toYup/withWhen';
 
 const toYupNumber = (jsonSchema: NumberTypeSchema): NumberSchema => {
     let yupSchema = yup.number();
@@ -56,6 +57,8 @@ const toYupNumber = (jsonSchema: NumberTypeSchema): NumberSchema => {
     if (jsonSchema.strict) {
         yupSchema = withStrict(yupSchema, jsonSchema);
     }
+
+    withWhen(yupSchema, jsonSchema.when);
 
     return yupSchema;
 };
