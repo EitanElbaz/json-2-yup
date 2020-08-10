@@ -6,6 +6,14 @@ import withWhen from 'src/toYup/withWhen';
 const toYupBoolean = (jsonSchema: BooleanTypeSchema): BooleanSchema => {
     let yupSchema = yup.boolean();
 
+    if (Array.isArray(jsonSchema.oneOf)) {
+        yupSchema = withOneOf(yupSchema, jsonSchema);
+    }
+
+    if (Array.isArray(jsonSchema.notOneOf)) {
+        yupSchema = withNotOneOf(yupSchema, jsonSchema);
+    }
+
     if (jsonSchema.nullable != null) {
         yupSchema = withNullable(yupSchema, jsonSchema);
     }
@@ -22,6 +30,14 @@ const toYupBoolean = (jsonSchema: BooleanTypeSchema): BooleanSchema => {
 
     return yupSchema;
 };
+
+function withOneOf(schema: BooleanSchema, jsonSchema: BooleanTypeSchema): BooleanSchema {
+    return schema.oneOf(jsonSchema.oneOf, jsonSchema?.errors?.oneOf);
+}
+
+function withNotOneOf(schema: BooleanSchema, jsonSchema: BooleanTypeSchema): BooleanSchema {
+    return schema.notOneOf(jsonSchema.notOneOf, jsonSchema?.errors?.notOneOf);
+}
 
 function withNullable(schema: BooleanSchema, jsonSchema: BooleanTypeSchema): BooleanSchema {
     return schema.nullable(jsonSchema.nullable);

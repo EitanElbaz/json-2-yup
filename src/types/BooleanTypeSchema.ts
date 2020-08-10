@@ -4,9 +4,12 @@ import YupTypeErrors from 'src/types/YupTypeErrors';
 
 type BooleanTypeSchema = YupTypeSchema & {
     type: 'boolean';
+    oneOf?: boolean[];
+    notOneOf?: boolean[];
     nullable?: boolean;
     errors?: YupTypeErrors & {
-        nullable?: string;
+        oneOf?: string;
+        notOneOf?: string;
     };
     when?: WhenSchema<BooleanTypeSchema>[];
 };
