@@ -63,6 +63,7 @@ const schema: ObjectTypeSchema = {
             min: 2,
             of: {
                 type: 'number',
+                strict: true,
                 min: 1,
                 errors: {
                     min: 'sub number array value must be more than 1',
