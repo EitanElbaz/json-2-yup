@@ -1,6 +1,6 @@
 {
   "name": "json-2-yup",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a",
   "main": "./dist/index.js",
   "typings": "./typings/index.d.ts",
@@ -10,6 +10,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "yarn test -- --watch",
+    "test:coverage": "yarn test --collectCoverage",
     "prebuild": "yarn clean",
     "build": "NODE_ENV=production webpack -p",
     "clean": "rm -rf ./{dist,typings}"

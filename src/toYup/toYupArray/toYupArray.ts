@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { ArraySchema, Schema } from 'yup';
 import withWhen from 'src/toYup/withWhen';
 import ArrayTypeSchema from 'src/types/ArrayTypeSchema';
-import toYup from 'src/toYup';
+import { toYup } from 'src/toYup';
 
 const toYupArray = <T>(jsonSchema: ArrayTypeSchema): ArraySchema<T> => {
     let yupSchema = yup.array<T>();

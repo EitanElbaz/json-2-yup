@@ -1,6 +1,6 @@
 import { StringSchema } from 'yup';
 import StringTypeSchema from 'src/types/StringTypeSchema';
-import toYup from 'src/toYup';
+import { toYup } from 'src/toYup';
 
 const schemaNullable: StringTypeSchema = {
     type: 'string',
