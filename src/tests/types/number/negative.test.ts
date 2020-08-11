@@ -1,7 +1,7 @@
 import to from 'await-to-js';
 import toYup from 'src/toYup';
 import NumberTypeSchema from 'src/types/NumberTypeSchema';
-import { NumberSchema } from 'yup';
+import { NumberSchema, ValidationError } from 'yup';
 
 const errorMsg = 'Must be negative';
 
@@ -31,5 +31,5 @@ test('negative expect pass', async () => {
 
 test('negative expect fail message', async () => {
     const [error] = await to(yupSchema.validate(1));
-    expect(error.message).toBe(errorMsg);
+    expect((error as ValidationError).message).toBe(errorMsg);
 });

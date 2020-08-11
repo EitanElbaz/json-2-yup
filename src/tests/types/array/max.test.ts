@@ -1,7 +1,7 @@
 import toYup from 'src/toYup';
 import ArrayTypeSchema from 'src/types/ArrayTypeSchema';
 import to from 'await-to-js';
-import { ArraySchema } from 'yup';
+import { ArraySchema, ValidationError } from 'yup';
 
 const errorMsg = 'Max 4 items';
 
@@ -32,5 +32,5 @@ test('max expect pass', async () => {
 
 test('max expect fail message', async () => {
     const [error] = await to(yupSchema.validate([1, 2, 3, 4, 5]));
-    expect(error.message).toBe(errorMsg);
+    expect((error as ValidationError).message).toBe(errorMsg);
 });

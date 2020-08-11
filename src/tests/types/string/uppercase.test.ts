@@ -1,4 +1,4 @@
-import { StringSchema } from 'yup';
+import { StringSchema, ValidationError } from 'yup';
 import to from 'await-to-js';
 import StringTypeSchema from 'src/types/StringTypeSchema';
 import toYup from 'src/toYup';
@@ -29,5 +29,5 @@ test('uppercase expect pass', async () => {
 
 test('uppercase expect fail message', async () => {
     const [error] = await to(yupSchema.validate('HELLO HellO'));
-    expect(error.message).toBe(errorMsg);
+    expect((error as ValidationError).message).toBe(errorMsg);
 });

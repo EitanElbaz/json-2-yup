@@ -1,7 +1,7 @@
 import to from 'await-to-js';
 import toYup from 'src/toYup';
 import ArrayTypeSchema from 'src/types/ArrayTypeSchema';
-import { ArraySchema } from 'yup';
+import { ArraySchema, ValidationError } from 'yup';
 
 const errorMsg = 'Min 2 items';
 
@@ -35,5 +35,5 @@ test('min expect pass', async () => {
 
 test('min expect fail message', async () => {
     const [error] = await to(yupSchema.validate([1]));
-    expect(error.message).toBe(errorMsg);
+    expect((error as ValidationError).message).toBe(errorMsg);
 });
