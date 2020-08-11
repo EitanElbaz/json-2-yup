@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "yarn test -- --watch",
-    "prebuild": "yarn test && yarn clean",
+    "prebuild": "yarn clean",
     "build": "NODE_ENV=production webpack -p",
     "clean": "rm -rf ./{dist,typings}"
   },
