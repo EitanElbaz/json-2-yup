@@ -1,4 +1,4 @@
-import toYup from 'src/toYup';
+import { toYup } from 'src/toYup';
 import { ObjectSchema, ValidationError } from 'yup';
 import ObjectTypeSchema from 'src/types/ObjectTypeSchema';
 import to from 'await-to-js';
