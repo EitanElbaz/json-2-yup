@@ -11,3 +11,6 @@ coverage
 
 # build
 dist
+
+# types
+typings
