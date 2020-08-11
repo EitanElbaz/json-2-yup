@@ -1,4 +1,4 @@
 const toUnix = (date: Date): number => {
-    return date.getTime();
+    return Math.round(date.getTime() / 1000);
 };
 export default toUnix;
