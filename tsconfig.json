@@ -15,9 +15,9 @@
       "jest"
     ],
     "typeRoots": ["./node_modules/@types", "./src"],
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "src/*": ["./src/*"]
+      "src/*": ["src/*"]
     }
   },
   "include": ["webpack.config.js","jest.config.js", "src/*", "src/**/*"],
