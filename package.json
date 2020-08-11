@@ -3,12 +3,16 @@
   "version": "0.0.1",
   "description": "a",
   "main": "./dist/index.js",
+  "typings": "./typings/index.d.ts",
   "repository": "git@github.com:EitanElbaz/json-2-yup.git",
   "author": "-",
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "test:watch": "yarn test -- --watch"
+    "test:watch": "yarn test -- --watch",
+    "prebuild": "yarn clean",
+    "build": "NODE_ENV=production webpack -p",
+    "clean": "rm -rf ./{dist,typings}"
   },
   "dependencies": {
     "await-to-js": "^2.1.1",
@@ -16,10 +20,16 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.9",
+    "@types/webpack": "^4.41.21",
     "@types/yup": "^0.29.4",
+    "clean-webpack-plugin": "^3.0.0",
     "jest": "^26.2.2",
     "prettier": "^2.0.5",
     "ts-jest": "^26.1.4",
-    "typescript": "^3.9.7"
+    "ts-loader": "^8.0.2",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   }
 }

@@ -1,7 +1,7 @@
 import to from 'await-to-js';
 import toYup from 'src/toYup';
 import ArrayTypeSchema from 'src/types/ArrayTypeSchema';
-import { ArraySchema } from 'yup';
+import { ArraySchema, ValidationError } from 'yup';
 
 const errorMsg = 'Array is required';
 
@@ -34,5 +34,5 @@ test('required expect pass', async () => {
 
 test('required expect fail message', async () => {
     const [error] = await to(yupSchema.validate([]));
-    expect(error.message).toBe(errorMsg);
+    expect((error as ValidationError).message).toBe(errorMsg);
 });

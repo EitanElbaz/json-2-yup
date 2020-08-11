@@ -1,4 +1,4 @@
-import { BooleanSchema } from 'yup';
+import { BooleanSchema, ValidationError } from 'yup';
 import to from 'await-to-js';
 import toYup from 'src/toYup';
 import BooleanTypeSchema from 'src/types/BooleanTypeSchema';
@@ -26,5 +26,5 @@ test('notOneOf expect pass', async () => {
 
 test('notOneOf expect fail message', async () => {
     const [error] = await to(yupSchema.validate(false));
-    expect(error.message).toBe(errorMsg);
+    expect((error as ValidationError).message).toBe(errorMsg);
 });

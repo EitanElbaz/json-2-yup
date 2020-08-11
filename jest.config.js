@@ -1,11 +1,6 @@
 const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const { compilerOptions } = require('./tsconfig');
 
-console.log(
-    pathsToModuleNameMapper(compilerOptions.paths, {
-        prefix: '<rootDir>/',
-    }),
-);
 module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'node',
@@ -20,10 +15,6 @@ module.exports = {
         // can see this setting in tsconfig.jest.json -> "jsx": "react"
         'ts-jest': {
             tsConfig: 'tsconfig.jest.json',
-            // moduleNameMapper: { '^~/(.*)$': '<rootDir>/$1' },
-            // moduleNameMapper: {
-            //     '^src(.*)$': '<rootDir>/src/$1',
-            // },
         },
     },
 };

@@ -1,7 +1,7 @@
 import to from 'await-to-js';
 import toYup from 'src/toYup';
 import ArrayTypeSchema from 'src/types/ArrayTypeSchema';
-import { ArraySchema } from 'yup';
+import { ArraySchema, ValidationError } from 'yup';
 
 const errorMinMsg = 'Min 2 items';
 const errorMaxMsg = 'Max 4 items';
@@ -54,12 +54,12 @@ test('of number array expect pass', async () => {
 
 test('of number expect min fail message', async () => {
     const [error] = await to(yupSchema.validate([[123, 124]]));
-    expect(error.message).toBe(errorMinMsg);
+    expect((error as ValidationError).message).toBe(errorMinMsg);
 });
 
 test('of number sub array expect min fail message', async () => {
     const [error] = await to(yupSchema.validate([[123, 124], [123]]));
-    expect(error.message).toBe(errorOfMsg);
+    expect((error as ValidationError).message).toBe(errorOfMsg);
 });
 
 test('of number expect max fail message', async () => {
@@ -72,5 +72,5 @@ test('of number expect max fail message', async () => {
             [123, 124],
         ]),
     );
-    expect(error.message).toBe(errorMaxMsg);
+    expect((error as ValidationError).message).toBe(errorMaxMsg);
 });

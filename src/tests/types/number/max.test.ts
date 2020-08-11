@@ -1,7 +1,7 @@
 import to from 'await-to-js';
 import toYup from 'src/toYup';
 import NumberTypeSchema from 'src/types/NumberTypeSchema';
-import { NumberSchema } from 'yup';
+import { NumberSchema, ValidationError } from 'yup';
 
 const errorMsg = 'Max 5';
 
@@ -35,5 +35,5 @@ test('max expect pass', async () => {
 
 test('min expect fail message', async () => {
     const [error] = await to(yupSchema.validate(6));
-    expect(error.message).toBe(errorMsg);
+    expect((error as ValidationError).message).toBe(errorMsg);
 });
