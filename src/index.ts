@@ -1,2 +1,43 @@
-export * from 'src/toYup';
-export * from 'src/types';
+import {
+    toYup,
+    toYupArray,
+    toYupObject,
+    toYupBoolean,
+    toYupNumber,
+    toYupString,
+    toYupDate,
+} from 'src/toYup';
+import {
+    YupTypeSchema,
+    StringTypeSchema,
+    NumberTypeSchema,
+    BooleanTypeSchema,
+    DateTypeSchema,
+    ObjectTypeSchema,
+    ArrayTypeSchema,
+    WhenSchema,
+    DataType,
+    YupTypeErrors,
+    TypeSchemas,
+} from 'src/types';
+
+export {
+    toYup,
+    toYupArray,
+    toYupObject,
+    toYupBoolean,
+    toYupNumber,
+    toYupString,
+    toYupDate,
+    YupTypeSchema,
+    StringTypeSchema,
+    NumberTypeSchema,
+    BooleanTypeSchema,
+    DateTypeSchema,
+    ObjectTypeSchema,
+    ArrayTypeSchema,
+    WhenSchema,
+    DataType,
+    YupTypeErrors,
+    TypeSchemas,
+};

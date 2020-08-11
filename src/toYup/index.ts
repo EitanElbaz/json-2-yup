@@ -4,3 +4,4 @@ export { default as toYupBoolean } from './toYupBoolean';
 export { default as toYupNumber } from './toYupNumber';
 export { default as toYupObject } from './toYupObject';
 export { default as toYupString } from './toYupString';
+export { default as toYupDate } from './toYupDate';
