@@ -74,6 +74,23 @@ const schema: ObjectTypeSchema = {
                 required: 'numbers required',
             },
         },
+        dates: {
+            type: 'array',
+            required: true,
+            strict: true,
+            min: 1,
+            max: 2,
+            of: {
+                type: 'date',
+                required: true,
+                strict: true,
+            },
+            errors: {
+                min: 'min 1 date',
+                max: 'max 2 dates',
+                required: 'dates required',
+            },
+        },
     },
 };
 
@@ -87,6 +104,7 @@ test('Object schema expect success', async () => {
             email: 'test@example.com',
             count: 6,
             numbers: [1, 2],
+            dates: [new Date()],
         }),
     ).toBe(true);
 });
@@ -100,6 +118,7 @@ test('Object schema expect too short error messages', async () => {
                 email: 'a@a.com',
                 count: 4,
                 numbers: [2],
+                dates: [],
             },
             { abortEarly: false },
         ),
@@ -110,6 +129,7 @@ test('Object schema expect too short error messages', async () => {
     expect(yupError.errors.includes('email too short')).toBe(true);
     expect(yupError.errors.includes('count too low')).toBe(true);
     expect(yupError.errors.includes('must have at least 2 numbers')).toBe(true);
+    expect(yupError.errors.includes('min 1 date')).toBe(true);
 });
 
 test('Object schema expect too long error messages', async () => {
@@ -120,6 +140,7 @@ test('Object schema expect too long error messages', async () => {
                 lastName: 'Williamson',
                 email: 'hello.something@some-company.com',
                 count: 20,
+                dates: [new Date(), new Date(), new Date()],
             },
             { abortEarly: false },
         ),
@@ -129,6 +150,7 @@ test('Object schema expect too long error messages', async () => {
     expect(yupError.errors.includes('last name too long')).toBe(true);
     expect(yupError.errors.includes('email too long')).toBe(true);
     expect(yupError.errors.includes('count too high')).toBe(true);
+    expect(yupError.errors.includes('max 2 dates')).toBe(true);
 });
 
 test('Object schema expect required error messages', async () => {
@@ -150,6 +172,7 @@ test('Object schema expect required error messages', async () => {
     expect(yupError.errors.includes('email required')).toBe(true);
     expect(yupError.errors.includes('count required')).toBe(true);
     expect(yupError.errors.includes('numbers required')).toBe(true);
+    expect(yupError.errors.includes('dates required')).toBe(true);
 });
 
 test('Object schema expect sub numbers array min error message', async () => {
