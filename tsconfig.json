@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "outDir": "typings",
+    "rootDirs": ["src"],
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "declaration": true,
+    "declarationMap": true,
+    "target": "es5",
+    "strict": false,
+    "lib": ["es2015", "dom"],
+    "types": [
+      "node",
+      "jest"
+    ],
+    "typeRoots": ["./node_modules/@types", "./src"],
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["./src/*"]
+    }
+  },
+  "include": ["webpack.config.js","jest.config.js", "src/*", "src/**/*"],
+  "exclude": ["node_modules", "dist", "typings"]
+}
