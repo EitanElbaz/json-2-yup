@@ -8,3 +8,4 @@ export type { default as ArrayTypeSchema } from './ArrayTypeSchema';
 export type { default as WhenSchema } from './WhenSchema';
 export type { default as DataType } from './DataType';
 export type { default as YupTypeErrors } from './YupTypeErrors';
+export type { default as TypeSchemas } from './TypeSchemas';
