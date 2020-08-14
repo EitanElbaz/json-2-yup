@@ -5,11 +5,17 @@ import WhenSchema from 'src/types/WhenSchema';
 type DateTypeSchema = YupTypeSchema & {
     type: 'date';
 
-    // min date as a unix timestamp
-    min?: number;
+    /**
+     * number: as a unix timestamp in seconds
+     * string: anything parsable by `new Date(string)` e.g. '2020-12-01'
+     */
+    min?: number | string;
 
-    // max date as a unix timestamp
-    max?: number;
+    /**
+     * number: as a unix timestamp in seconds
+     * string: anything parsable by `new Date(string)` e.g. '2020-12-01'
+     */
+    max?: number | string;
 
     nullable?: boolean;
     errors?: YupTypeErrors & { min?: string; max?: string };

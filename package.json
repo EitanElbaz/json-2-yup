@@ -1,6 +1,6 @@
 {
   "name": "json-2-yup",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "a",
   "main": "./dist/index.js",
   "typings": "./typings/index.d.ts",
@@ -16,13 +16,13 @@
     "clean": "rm -rf ./{dist,typings}"
   },
   "dependencies": {
-    "await-to-js": "^2.1.1",
     "yup": "^0.29.3"
   },
   "devDependencies": {
     "@types/jest": "^26.0.9",
     "@types/webpack": "^4.41.21",
     "@types/yup": "^0.29.4",
+    "await-to-js": "^2.1.1",
     "clean-webpack-plugin": "^3.0.0",
     "jest": "^26.2.2",
     "prettier": "^2.0.5",

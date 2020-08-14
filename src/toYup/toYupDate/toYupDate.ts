@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { DateSchema } from 'yup';
 import withWhen from 'src/toYup/withWhen';
 import DateTypeSchema from 'src/types/DateTypeSchema';
-import { fromUnix } from 'src/lib/date';
+import { valueToDate } from 'src/lib/date';
 
 const toYupDate = (jsonSchema: DateTypeSchema): DateSchema => {
     let yupSchema = yup.date();
@@ -33,11 +33,22 @@ const toYupDate = (jsonSchema: DateTypeSchema): DateSchema => {
 };
 
 function withMin(schema: DateSchema, jsonSchema: DateTypeSchema): DateSchema {
-    return schema.min(fromUnix(jsonSchema.min), jsonSchema?.errors?.min);
+    let date = valueToDate(jsonSchema.min);
+
+    if (date != null) {
+        return schema.min(date, jsonSchema?.errors?.min);
+    }
+
+    return schema;
 }
 
 function withMax(schema: DateSchema, jsonSchema: DateTypeSchema): DateSchema {
-    return schema.max(fromUnix(jsonSchema.max), jsonSchema?.errors?.max);
+    let date = valueToDate(jsonSchema.max);
+
+    if (date != null) {
+        return schema.max(date, jsonSchema?.errors?.max);
+    }
+    return schema;
 }
 
 function withRequired(schema: DateSchema, jsonSchema: DateTypeSchema): DateSchema {
