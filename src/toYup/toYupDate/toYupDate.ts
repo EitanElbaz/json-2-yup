@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { DateSchema } from 'yup';
 import withWhen from 'src/toYup/withWhen';
 import DateTypeSchema from 'src/types/DateTypeSchema';
-import { fromUnix, valueToDate } from 'src/lib/date';
+import { valueToDate } from 'src/lib/date';
 
 const toYupDate = (jsonSchema: DateTypeSchema): DateSchema => {
     let yupSchema = yup.date();
