@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "yarn test -- --watch",
-    "test:coverage": "yarn test --collectCoverage",
+    "test:coverage": "yarn test --collectCoverage && jest-coverage-badges --output './test-badges'",
     "prebuild": "yarn clean",
     "build": "NODE_ENV=production webpack -p",
     "clean": "rm -rf ./{dist,typings}"
@@ -25,6 +25,7 @@
     "await-to-js": "^2.1.1",
     "clean-webpack-plugin": "^3.0.0",
     "jest": "^26.2.2",
+    "jest-coverage-badges": "^1.1.2",
     "prettier": "^2.0.5",
     "ts-jest": "^26.1.4",
     "ts-loader": "^8.0.2",
