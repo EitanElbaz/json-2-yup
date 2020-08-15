@@ -21,6 +21,7 @@ yarn add json-2-yup
 - [Object](docs/object.md)
 - [String](docs/string.md)
 - [When](docs/when.md)
+- [Custom Errors](docs/errors.md)
 
 ```typescript
 import { toYup, NumberTypeSchema } from 'json-2-yup';
