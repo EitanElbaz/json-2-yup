@@ -46,7 +46,7 @@ const [error] = await to(yupSchema.validate('Hi'));
 console.log(error.errors); //["My custom min length message"]
 
 const [error2] = await to(yupSchema.validate(undefined));
-console.log(error2.errors); //["My custom min length message"]
+console.log(error2.errors); //["My custom required message"]
 
 
 ```
