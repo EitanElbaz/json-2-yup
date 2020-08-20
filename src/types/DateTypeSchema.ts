@@ -1,6 +1,6 @@
-import YupTypeSchema from 'src/types/YupTypeSchema';
-import YupTypeErrors from 'src/types/YupTypeErrors';
-import WhenSchema from 'src/types/WhenSchema';
+import YupTypeSchema from './YupTypeSchema';
+import YupTypeErrors from './YupTypeErrors';
+import WhenSchema from './WhenSchema';
 
 type DateTypeSchema = YupTypeSchema & {
     type: 'date';

@@ -1,5 +1,5 @@
-import DataType from 'src/types/DataType';
-import YupTypeErrors from 'src/types/YupTypeErrors';
+import DataType from './DataType';
+import YupTypeErrors from './YupTypeErrors';
 
 type YupTypeSchema = {
     type: DataType;

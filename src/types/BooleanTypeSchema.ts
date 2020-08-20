@@ -1,6 +1,6 @@
-import YupTypeSchema from 'src/types/YupTypeSchema';
-import WhenSchema from 'src/types/WhenSchema';
-import YupTypeErrors from 'src/types/YupTypeErrors';
+import YupTypeSchema from './YupTypeSchema';
+import WhenSchema from './WhenSchema';
+import YupTypeErrors from './YupTypeErrors';
 
 type BooleanTypeSchema = YupTypeSchema & {
     type: 'boolean';
