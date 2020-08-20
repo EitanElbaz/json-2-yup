@@ -1,7 +1,7 @@
-import YupTypeSchema from 'src/types/YupTypeSchema';
-import WhenSchema from 'src/types/WhenSchema';
-import YupTypeErrors from 'src/types/YupTypeErrors';
-import TypeSchemas from 'src/types/TypeSchemas';
+import YupTypeSchema from './YupTypeSchema';
+import WhenSchema from './WhenSchema';
+import YupTypeErrors from './YupTypeErrors';
+import TypeSchemas from './TypeSchemas';
 
 type ArrayTypeSchema = YupTypeSchema & {
     type: 'array';

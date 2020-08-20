@@ -1,4 +1,4 @@
-import YupTypeSchema from 'src/types/YupTypeSchema';
+import YupTypeSchema from './YupTypeSchema';
 
 type WhenSchema<T extends YupTypeSchema> = {
     fields: string | string[];
