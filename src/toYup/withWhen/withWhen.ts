@@ -1,7 +1,6 @@
-import YupTypeSchema from 'src/types/YupTypeSchema';
-import WhenSchema from 'src/types/WhenSchema';
+import { WhenSchema, YupTypeSchema } from '../../types';
 import { Schema } from 'yup';
-import { toYup } from 'src/toYup';
+import { toYup } from '..';
 
 const withWhen = <T extends YupTypeSchema, U extends Schema<any>>(
     schema: U,

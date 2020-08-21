@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { ObjectSchema, ObjectSchemaDefinition } from 'yup';
-import ObjectTypeSchema from 'src/types/ObjectTypeSchema';
-import { toYup } from 'src/toYup';
+import { ObjectTypeSchema } from '../../types';
+import { toYup } from '..';
 
 const toYupObject = (jsonSchema: ObjectTypeSchema): ObjectSchema => {
     const fields: ObjectSchemaDefinition<any> = {};

@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { BooleanSchema } from 'yup';
-import BooleanTypeSchema from 'src/types/BooleanTypeSchema';
-import withWhen from 'src/toYup/withWhen';
+import { BooleanTypeSchema } from '../../types';
+import withWhen from '../withWhen';
 
 const toYupBoolean = (jsonSchema: BooleanTypeSchema): BooleanSchema => {
     let yupSchema = yup.boolean();
