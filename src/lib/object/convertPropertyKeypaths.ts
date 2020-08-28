@@ -1,11 +1,10 @@
 const set = require('set-value');
 import { get } from 'src/lib/fp';
 import ObjectTypeSchema from '../../types/ObjectTypeSchema';
-import YupTypeSchema from 'src/types/YupTypeSchema';
 
 const emptyObjectSchema: ObjectTypeSchema = { type: 'object', properties: {} };
 
-const convertPropertyKeypaths = (schema: ObjectTypeSchema) => {
+const convertPropertyKeypaths = (schema: ObjectTypeSchema): ObjectTypeSchema => {
     if (schema.properties) {
         const keys = Object.keys(schema.properties);
         keys.forEach((key) => {
