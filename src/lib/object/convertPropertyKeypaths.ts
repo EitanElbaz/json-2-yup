@@ -1,6 +1,5 @@
-import { get } from 'src/lib/fp';
-
 const set = require('set-value');
+import { get } from 'src/lib/fp';
 import ObjectTypeSchema from '../../types/ObjectTypeSchema';
 import YupTypeSchema from 'src/types/YupTypeSchema';
 
@@ -11,12 +10,12 @@ const convertPropertyKeypaths = (schema: ObjectTypeSchema) => {
         const keys = Object.keys(schema.properties);
         keys.forEach((key) => {
             if (key.indexOf('.') !== -1) {
-                const newObjectSchema = {};
                 const fullPathParts = [];
                 const parts = key.split('.');
 
                 parts.forEach((part, pIndex) => {
-                    const prevPart = pIndex > 0 ? `${fullPathParts[pIndex - 1]}.properties.` : '';
+                    const prevPart =
+                        pIndex > 0 ? `${fullPathParts[pIndex - 1]}.properties.` : 'properties.';
                     fullPathParts.push(`${prevPart}${part}`);
                 });
 
@@ -28,18 +27,17 @@ const convertPropertyKeypaths = (schema: ObjectTypeSchema) => {
                     if (currentKeys.indexOf(lastPart) === -1) {
                         const isLast = fIndex === fullPathParts.length - 1;
                         if (isLast) {
-                            set(newObjectSchema, part, {
+                            set(schema, part, {
                                 ...schema.properties[key],
                             });
                         } else {
-                            set(newObjectSchema, part, {
+                            set(schema, part, {
                                 ...current,
                                 properties: { ...current.properties },
                             });
                         }
                     }
                 });
-                schema.properties = { ...schema.properties, ...(newObjectSchema as any) };
                 delete schema.properties[key];
             }
         });
