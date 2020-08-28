@@ -1,16 +1,16 @@
-import toYupString from 'src/toYup/toYupString';
-import toYupNumber from 'src/toYup/toYupNumber';
-import toYupBoolean from 'src/toYup/toYupBoolean';
-import toYupDate from 'src/toYup/toYupDate';
-import toYupObject from 'src/toYup/toYupObject';
-import toYupArray from 'src/toYup/toYupArray';
-import YupTypeSchema from 'src/types/YupTypeSchema';
-import StringTypeSchema from 'src/types/StringTypeSchema';
-import NumberTypeSchema from 'src/types/NumberTypeSchema';
-import BooleanTypeSchema from 'src/types/BooleanTypeSchema';
-import DateTypeSchema from 'src/types/DateTypeSchema';
-import ObjectTypeSchema from 'src/types/ObjectTypeSchema';
-import ArrayTypeSchema from 'src/types/ArrayTypeSchema';
+import toYupString from './toYupString';
+import toYupNumber from './toYupNumber';
+import toYupBoolean from './toYupBoolean';
+import toYupDate from './toYupDate';
+import toYupObject from './toYupObject';
+import toYupArray from './toYupArray';
+import YupTypeSchema from '../types/YupTypeSchema';
+import StringTypeSchema from '../types/StringTypeSchema';
+import NumberTypeSchema from '../types/NumberTypeSchema';
+import BooleanTypeSchema from '../types/BooleanTypeSchema';
+import DateTypeSchema from '../types/DateTypeSchema';
+import ObjectTypeSchema from '../types/ObjectTypeSchema';
+import ArrayTypeSchema from '../types/ArrayTypeSchema';
 
 const toYup = (schema: YupTypeSchema) => {
     switch (schema.type) {

@@ -1,5 +1,5 @@
-import YupTypeSchema from 'src/types/YupTypeSchema';
-import TypeSchemas from 'src/types/TypeSchemas';
+import YupTypeSchema from './YupTypeSchema';
+import TypeSchemas from './TypeSchemas';
 
 type ObjectTypeSchema = Omit<YupTypeSchema, 'required'> & {
     type: 'object';

@@ -1,9 +1,9 @@
-import StringTypeSchema from 'src/types/StringTypeSchema';
-import NumberTypeSchema from 'src/types/NumberTypeSchema';
-import BooleanTypeSchema from 'src/types/BooleanTypeSchema';
-import DateTypeSchema from 'src/types/DateTypeSchema';
-import ObjectTypeSchema from 'src/types/ObjectTypeSchema';
-import ArrayTypeSchema from 'src/types/ArrayTypeSchema';
+import StringTypeSchema from './StringTypeSchema';
+import NumberTypeSchema from './NumberTypeSchema';
+import BooleanTypeSchema from './BooleanTypeSchema';
+import DateTypeSchema from './DateTypeSchema';
+import ObjectTypeSchema from './ObjectTypeSchema';
+import ArrayTypeSchema from './ArrayTypeSchema';
 
 type TypeSchemas =
     | StringTypeSchema

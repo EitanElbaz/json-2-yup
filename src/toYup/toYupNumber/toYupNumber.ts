@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { NumberSchema } from 'yup';
-import { NumberTypeSchema } from 'src/types';
-import withWhen from 'src/toYup/withWhen';
+import { NumberTypeSchema } from '../../types';
+import withWhen from '../withWhen';
 
 const toYupNumber = (jsonSchema: NumberTypeSchema): NumberSchema => {
     let yupSchema = yup.number();
