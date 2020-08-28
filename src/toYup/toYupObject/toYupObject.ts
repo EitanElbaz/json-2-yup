@@ -2,21 +2,26 @@ import * as yup from 'yup';
 import { ObjectSchema, ObjectSchemaDefinition } from 'yup';
 import { ObjectTypeSchema } from '../../types';
 import { toYup } from '..';
+import { convertPropertyKeypaths } from 'src/lib/object';
 
 const toYupObject = (jsonSchema: ObjectTypeSchema): ObjectSchema => {
     const fields: ObjectSchemaDefinition<any> = {};
 
-    const fieldNames = Object.keys(jsonSchema.properties);
+    const convertedSchema = convertPropertyKeypaths({ ...jsonSchema });
+    const fieldNames = Object.keys(convertedSchema.properties);
 
     fieldNames.forEach((fieldName) => {
-        const schema = jsonSchema.properties[fieldName];
+        let schema = convertedSchema.properties[fieldName];
+        if (schema.type === 'object') {
+            schema = convertPropertyKeypaths(schema as ObjectTypeSchema);
+        }
         fields[fieldName] = toYup(schema);
     });
 
     const yupSchema = yup.object(fields);
 
-    if (jsonSchema.strict === true) {
-        withStrict(yupSchema, jsonSchema);
+    if (convertedSchema.strict === true) {
+        withStrict(yupSchema, convertedSchema);
     }
 
     return yupSchema;
