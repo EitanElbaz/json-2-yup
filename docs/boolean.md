@@ -1,4 +1,4 @@
-### Boolean
+## Boolean
 
 Converting a string type json schema to a yup object will return an object the equivalent of `yup.boolean()` with all of the additional validation configuration.
 
@@ -10,7 +10,7 @@ Converting a string type json schema to a yup object will return an object the e
 - [Type Definition](#type)
 
 
-#### Usage
+### Usage
 
 For more advanced usage, check out the [boolean type test suite](../src/tests/types/boolean).
 
@@ -44,7 +44,7 @@ const yupBooleanSchema = yup
         .strict(true);
 ```
 
-#### Type
+### Type
 
 ```typescript
 type BooleanTypeSchema = YupTypeSchema & {

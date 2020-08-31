@@ -1,4 +1,4 @@
-### Object
+## Object
 
 Converting a string type json schema to a yup object will return an object the equivalent of `yup.object()` with all of the additional validation configuration.
 
@@ -11,7 +11,7 @@ Converting a string type json schema to a yup object will return an object the e
 - [Keypath Conversion](#keypath-conversion)
 
 
-#### Usage
+### Usage
 
 For more advanced usage, check out the [object type test suite](../src/tests/types/object).
 
@@ -76,7 +76,7 @@ const yupBooleanSchema = yup
         .strict(true);
 ```
 
-#### Type
+### Type
 
 ```typescript
 type ObjectTypeSchema = Omit<YupTypeSchema, 'required'> & {
@@ -86,7 +86,7 @@ type ObjectTypeSchema = Omit<YupTypeSchema, 'required'> & {
 
 ```
 
-#### Keypath Conversion
+### Keypath Conversion
 
 Object property keys containing dots will be automatically converted and nested into child object validation types, 
 

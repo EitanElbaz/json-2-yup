@@ -1,4 +1,4 @@
-### Array
+## Array
 
 Converting a string type json schema to a yup object will return an object the equivalent of `yup.array()` with all of the additional validation configuration.
 
@@ -10,7 +10,7 @@ Converting a string type json schema to a yup object will return an object the e
 - [Type Definition](#type)
 
 
-#### Usage
+### Usage
 
 For more advanced usage, check out the [array type test suite](../src/tests/types/array).
 
@@ -44,7 +44,7 @@ const yupArraySchema = yup
         .strict(true);
 ```
 
-#### Type
+### Type
 
 ```typescript
 type ArrayTypeSchema = YupTypeSchema & {

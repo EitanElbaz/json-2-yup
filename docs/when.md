@@ -1,4 +1,4 @@
-### When
+## When
 
 Yup allows you to alter the validation on your data depending on other values within the validated data payload using the `when()` method.
 
@@ -12,7 +12,7 @@ The test suite contains examples of how `when` validation configuration can be u
 - [Object When](../src/tests/types/object/whenChaining.test.ts)
 - [String When](../src/tests/types/string/when.test.ts)
 
-#### Type
+### Type
 ```typescript
 type WhenSchema<T extends YupTypeSchema> = {
     fields: string | string[];

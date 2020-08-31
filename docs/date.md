@@ -1,4 +1,4 @@
-### Date
+## Date
 
 Converting a string type json schema to a yup object will return an object the equivalent of `yup.date()` with all of the additional validation configuration.
 
@@ -10,7 +10,7 @@ Converting a string type json schema to a yup object will return an object the e
 - [Type Definition](#type)
 
 
-#### Usage
+### Usage
 
 For more advanced usage, check out the [date type test suite](../src/tests/types/date).
 
@@ -45,7 +45,7 @@ const yupDateSchema = yup
         .strict(true);
 ```
 
-#### Type
+### Type
 
 ```typescript
 type DateTypeSchema = YupTypeSchema & {
