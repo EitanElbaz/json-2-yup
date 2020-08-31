@@ -8,6 +8,7 @@ Converting a string type json schema to a yup object will return an object the e
 - [YupTypeErrors](../src/types/YupTypeErrors.ts)
 - [WhenSchema](../src/types/WhenSchema.ts)
 - [Type Definition](#type)
+- [Keypath Conversion](#keypath-conversion)
 
 
 #### Usage
@@ -83,4 +84,53 @@ type ObjectTypeSchema = Omit<YupTypeSchema, 'required'> & {
     properties: Record<string, TypeSchemas>;
 };
 
+```
+
+#### Keypath Conversion
+
+Object property keys containing dots will be automatically converted and nested into child object validation types, 
+
+- [Basic Keypath Example](../src/tests/types/object/withKeypaths.test.ts).
+- [Advanced Keypath Example](../src/tests/types/object/withNestedKeypaths.test.ts).
+
+ The following example demonstrates how an object definition will be validated once it is converted into a YUP object. It's important to note that this dot notation keypathing can be done at any level of an object type validation schema.
+ 
+ ```typescript
+import { ObjectTypeSchema } from 'json-2-yup';
+
+// Property names with dot notation keypaths
+
+const objectSchema: ObjectTypeSchema = {
+    type: 'object',
+    strict: true,
+    properties: {
+        'user.details.firstName': {
+            type: 'string',
+            required: true,
+        },
+    },
+}
+
+// Will actually be converted into this object before being 'YUP-ified'
+
+const actualObjectSchema: ObjectTypeSchema = {
+    type: 'object',
+    strict: true,
+    properties: {
+        user: {
+            type: 'object',
+            properties: {
+                details: {
+                    type: 'object',
+                    properties: {
+                        firstName: {
+                            type: 'string',
+                            required: true,
+                        },
+                    },
+                },
+            },
+        },
+    },
+}
 ```
