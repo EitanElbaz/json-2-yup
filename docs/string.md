@@ -3,14 +3,16 @@
 Converting a string type json schema to a yup object will return an object the equivalent of `yup.string()` with all of the additional validation configuration.
 
 - [Usage](#usage)
-- [StringTypeSchema](src/types/StringTypeSchema.ts)
-- [YupTypeSchema](src/types/YupTypeSchema.ts)
-- [YupTypeErrors](src/types/YupTypeErrors.ts)
-- [WhenSchema](src/types/WhenSchema.ts)
+- [StringTypeSchema](../src/types/StringTypeSchema.ts)
+- [YupTypeSchema](../src/types/YupTypeSchema.ts)
+- [YupTypeErrors](../src/types/YupTypeErrors.ts)
+- [WhenSchema](../src/types/WhenSchema.ts)
 - [Type Definition](#Type Definition)
 
 
 #### Usage
+
+For more advanced usage, check out the [string type test suite](../src/tests/types/string).
 
 ```typescript
 import { toYup, StringTypeSchema } from 'json-2-yup';
@@ -36,7 +38,7 @@ console.log(yupSchema.isValidSync('Hi')); //false
 
 // Equivalent to 
 
-const yupNumberSchema = yup
+const yupStringSchema = yup
         .string()
         .min(5, 'My custom min length message')
         .required('My custom required message')

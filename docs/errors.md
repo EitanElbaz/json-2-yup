@@ -1,9 +1,9 @@
 ### Custom Errors
-Every schema type has optional error properties which allow you to override the error messages for specific failure reasons.
+Every schema type has an optional errors object which allow you to override the default YUP generated error messages for specific failure reasons.
 
-For example, these are the [StringTypeSchema](src/types/StringTypeSchema.ts) error message options:
+For example, these are the [StringTypeSchema](../src/types/StringTypeSchema.ts) error message options:
 
-- [YupTypeErrors](src/types/YupTypeErrors.ts)
+- [YupTypeErrors](../src/types/YupTypeErrors.ts)
 - [Example](#example)
 
 ```typescript
@@ -22,7 +22,7 @@ For example, these are the [StringTypeSchema](src/types/StringTypeSchema.ts) err
 
 #### Example
 
-In this example we will set and retrieve our custom Yup error messages, for the `minLength` and `required` rules. The same can be done for all schema types and all schema type rules. Check the schema type's custom rule object for which error messages are available.
+In this example we will set and retrieve our custom Yup error messages, for the `minLength` and `required` rules. The same can be done for all schema types and all schema type rules. Check the schema type's custom error object type definition for which error messages are available.
 
 ```typescript
 import { toYup, StringTypeSchema } from 'json-2-yup';
