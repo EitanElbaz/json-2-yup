@@ -8,6 +8,7 @@ const get = (value: any, path: string, defaultValue: any = null) => {
                 // eslint-disable-next-line no-param-reassign
                 acc = acc[v];
             } catch (e) {
+                /* istanbul ignore next */
                 return defaultValue;
             }
             return acc;

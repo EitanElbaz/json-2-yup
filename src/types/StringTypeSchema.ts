@@ -3,6 +3,7 @@ import YupTypeSchema from './YupTypeSchema';
 import WhenSchema from './WhenSchema';
 
 type StringTypeSchema = YupTypeSchema & {
+    type: 'string';
     minLength?: number;
     maxLength?: number;
     case?: 'lowercase' | 'uppercase';
