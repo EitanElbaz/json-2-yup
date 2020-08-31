@@ -18,8 +18,6 @@ For more advanced usage, check out the [date type test suite](../src/tests/types
 import { toYup, DateTypeSchema } from 'json-2-yup';
 import * as yup from 'yup';
 
-//
-
 const schema: DateTypeSchema = {
     type: 'date',
     strict: true,
