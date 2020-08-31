@@ -18,8 +18,6 @@ For more advanced usage, check out the [string type test suite](../src/tests/typ
 import { toYup, StringTypeSchema } from 'json-2-yup';
 import * as yup from 'yup';
 
-// json-2-yup
-
 const schema: StringTypeSchema = {
     type: 'string',
     strict: true,
