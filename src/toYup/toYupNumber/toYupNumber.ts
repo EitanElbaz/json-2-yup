@@ -6,6 +6,7 @@ import withWhen from '../withWhen';
 const toYupNumber = (jsonSchema: NumberTypeSchema): NumberSchema => {
     let yupSchema = yup.number();
 
+    /* istanbul ignore next */
     if (jsonSchema.round != null) {
         yupSchema = withRound(yupSchema, jsonSchema);
     }
@@ -99,6 +100,7 @@ function withNotOneOf(schema: NumberSchema, jsonSchema: NumberTypeSchema): Numbe
     return schema.notOneOf(jsonSchema.notOneOf, jsonSchema?.errors?.notOneOf);
 }
 
+/* istanbul ignore next */
 function withRound(schema: NumberSchema, jsonSchema: NumberTypeSchema): NumberSchema {
     return schema.round(jsonSchema.round);
 }
