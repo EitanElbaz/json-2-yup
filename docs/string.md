@@ -7,7 +7,7 @@ Converting a string type json schema to a yup object will return an object the e
 - [YupTypeSchema](../src/types/YupTypeSchema.ts)
 - [YupTypeErrors](../src/types/YupTypeErrors.ts)
 - [WhenSchema](../src/types/WhenSchema.ts)
-- [Type Definition](#Type Definition)
+- [Type Definition](#type)
 
 
 #### Usage
@@ -45,7 +45,7 @@ const yupStringSchema = yup
         .strict(true);
 ```
 
-#### Type Definition
+#### Type
 ```typescript
 import { YupTypeErrors, YupTypeSchema, WhenSchema } from 'json-2-yup';
 
