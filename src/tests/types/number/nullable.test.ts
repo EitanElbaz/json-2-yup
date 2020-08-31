@@ -36,7 +36,7 @@ test('not nullable expect fail', async () => {
     expect(yupNotNullableSchema.isValidSync('123')).toBe(false);
 });
 
-test('nullable expect pass', async () => {
+test('not nullable expect pass', async () => {
     expect(yupNotNullableSchema.isValidSync(123)).toBe(true);
     expect(yupNotNullableSchema.isValidSync(123.2)).toBe(true);
 });
