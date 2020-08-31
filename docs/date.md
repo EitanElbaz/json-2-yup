@@ -1,4 +1,4 @@
-### Strings
+### Date
 
 Converting a string type json schema to a yup object will return an object the equivalent of `yup.date()` with all of the additional validation configuration.
 

@@ -1,4 +1,4 @@
-### Strings
+### Boolean
 
 Converting a string type json schema to a yup object will return an object the equivalent of `yup.boolean()` with all of the additional validation configuration.
 
