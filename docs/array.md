@@ -47,8 +47,6 @@ const yupArraySchema = yup
 #### Type
 
 ```typescript
-import { YupTypeErrors, YupTypeSchema, WhenSchema, TypeSchemas } from 'json-2-yup';
-
 type ArrayTypeSchema = YupTypeSchema & {
     type: 'array';
     of?: TypeSchemas;

@@ -47,8 +47,6 @@ const yupStringSchema = yup
 
 #### Type
 ```typescript
-import { YupTypeErrors, YupTypeSchema, WhenSchema } from 'json-2-yup';
-
 type StringTypeSchema = YupTypeSchema & {
     type: 'string';
     minLength?: number;
