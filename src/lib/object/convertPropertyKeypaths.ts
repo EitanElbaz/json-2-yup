@@ -1,6 +1,6 @@
 const set = require('set-value');
 import { get } from 'src/lib/fp';
-import ObjectTypeSchema from '../../types/ObjectTypeSchema';
+import { ObjectTypeSchema } from '../../types';
 
 const emptyObjectSchema: ObjectTypeSchema = { type: 'object', properties: {} };
 

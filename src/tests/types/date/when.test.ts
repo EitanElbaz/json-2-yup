@@ -1,7 +1,7 @@
 import { ObjectSchema, ValidationError } from 'yup';
 import to from 'await-to-js';
 import { toYup } from 'src/toYup';
-import ObjectTypeSchema from 'src/types/ObjectTypeSchema';
+import { ObjectTypeSchema } from 'src/types';
 import { toUnix } from 'src/lib/date';
 
 const schema: ObjectTypeSchema = {

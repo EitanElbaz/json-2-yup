@@ -1,9 +1,9 @@
 ## Custom Errors
 Every schema type has an optional errors object which allow you to override the default YUP generated error messages for specific failure reasons.
 
-For example, these are the [StringTypeSchema](../src/types/StringTypeSchema.ts) error message options:
+For example, these are the [StringTypeSchema](../src/types/index.ts) error message options:
 
-- [YupTypeErrors](../src/types/YupTypeErrors.ts)
+- [YupTypeErrors](../src/types/index.ts)
 - [Example](#example)
 
 ```typescript

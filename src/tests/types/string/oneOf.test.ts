@@ -1,6 +1,6 @@
 import { StringSchema, ValidationError } from 'yup';
 import to from 'await-to-js';
-import StringTypeSchema from 'src/types/StringTypeSchema';
+import { StringTypeSchema } from 'src/types';
 import { toYup } from 'src/toYup';
 
 const errorMsg = 'Must be either "one" or "two"';

@@ -1,4 +1,4 @@
-import ObjectTypeSchema from 'src/types/ObjectTypeSchema';
+import { ObjectTypeSchema } from 'src/types';
 import { toYup } from 'src/toYup';
 import { ObjectSchema } from 'yup';
 

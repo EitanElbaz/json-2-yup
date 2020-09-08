@@ -3,10 +3,7 @@
 Converting a string type json schema to a yup object will return an object the equivalent of `yup.date()` with all of the additional validation configuration.
 
 - [Usage](#usage)
-- [DateTypeSchema](../src/types/DateTypeSchema.ts)
-- [YupTypeSchema](../src/types/YupTypeSchema.ts)
-- [YupTypeErrors](../src/types/YupTypeErrors.ts)
-- [WhenSchema](../src/types/WhenSchema.ts)
+- [Types](../src/types/index.ts)
 - [Type Definition](#type)
 
 
