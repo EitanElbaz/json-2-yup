@@ -3,10 +3,7 @@
 Converting a string type json schema to a yup object will return an object the equivalent of `yup.boolean()` with all of the additional validation configuration.
 
 - [Usage](#usage)
-- [BooleanTypeSchema](../src/types/BooleanTypeSchema.ts)
-- [YupTypeSchema](../src/types/YupTypeSchema.ts)
-- [YupTypeErrors](../src/types/YupTypeErrors.ts)
-- [WhenSchema](../src/types/WhenSchema.ts)
+- [Types](../src/types/index.ts)
 - [Type Definition](#type)
 
 
