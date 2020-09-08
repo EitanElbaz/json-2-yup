@@ -1,10 +1,10 @@
 import * as yup from 'yup';
 import { DateSchema } from 'yup';
 import withWhen from '../withWhen';
-import { DateTypeSchema } from '../../types';
+import { DateTypeSchema, YupTypeSchema } from '../../types';
 import { valueToDate } from 'src/lib/date';
 
-const toYupDate = (jsonSchema: DateTypeSchema): DateSchema => {
+const toYupDate = (jsonSchema: DateTypeSchema, forceRequired?: boolean): DateSchema => {
     let yupSchema = yup.date();
 
     if (jsonSchema.min != null) {
@@ -15,7 +15,7 @@ const toYupDate = (jsonSchema: DateTypeSchema): DateSchema => {
         yupSchema = withMax(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.required === true) {
+    if (jsonSchema.required === true || forceRequired === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
     }
 

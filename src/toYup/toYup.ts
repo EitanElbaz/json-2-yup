@@ -14,20 +14,20 @@ import {
     YupTypeSchema,
 } from '../types';
 
-const toYup = (schema: YupTypeSchema) => {
+const toYup = (schema: YupTypeSchema, forceRequired?: boolean) => {
     switch (schema.type) {
         case 'string':
-            return toYupString(schema as StringTypeSchema);
+            return toYupString(schema as StringTypeSchema, forceRequired);
         case 'number':
-            return toYupNumber(schema as NumberTypeSchema);
+            return toYupNumber(schema as NumberTypeSchema, forceRequired);
         case 'boolean':
-            return toYupBoolean(schema as BooleanTypeSchema);
+            return toYupBoolean(schema as BooleanTypeSchema, forceRequired);
         case 'date':
-            return toYupDate(schema as DateTypeSchema);
+            return toYupDate(schema as DateTypeSchema, forceRequired);
         case 'object':
             return toYupObject(schema as ObjectTypeSchema);
         case 'array':
-            return toYupArray(schema as ArrayTypeSchema);
+            return toYupArray(schema as ArrayTypeSchema, forceRequired);
     }
 };
 

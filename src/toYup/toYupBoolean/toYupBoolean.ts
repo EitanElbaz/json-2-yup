@@ -3,7 +3,7 @@ import { BooleanSchema } from 'yup';
 import { BooleanTypeSchema } from '../../types';
 import withWhen from '../withWhen';
 
-const toYupBoolean = (jsonSchema: BooleanTypeSchema): BooleanSchema => {
+const toYupBoolean = (jsonSchema: BooleanTypeSchema, forceRequired?: boolean): BooleanSchema => {
     let yupSchema = yup.boolean();
 
     if (Array.isArray(jsonSchema.oneOf)) {
@@ -18,7 +18,7 @@ const toYupBoolean = (jsonSchema: BooleanTypeSchema): BooleanSchema => {
         yupSchema = withNullable(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.required === true) {
+    if (jsonSchema.required === true || forceRequired === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
     }
 

@@ -3,7 +3,7 @@ import { NumberSchema } from 'yup';
 import { NumberTypeSchema } from '../../types';
 import withWhen from '../withWhen';
 
-const toYupNumber = (jsonSchema: NumberTypeSchema): NumberSchema => {
+const toYupNumber = (jsonSchema: NumberTypeSchema, forceRequired?: boolean): NumberSchema => {
     let yupSchema = yup.number();
 
     /* istanbul ignore next */
@@ -51,7 +51,7 @@ const toYupNumber = (jsonSchema: NumberTypeSchema): NumberSchema => {
         yupSchema = withNullable(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.required === true) {
+    if (jsonSchema.required === true || forceRequired === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
     }
 
