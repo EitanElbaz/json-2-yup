@@ -1,4 +1,4 @@
-import StringTypeSchema from 'src/types/StringTypeSchema';
+import { StringTypeSchema } from 'src/types';
 import { toYup } from 'src/toYup';
 import { StringSchema, ValidationError } from 'yup';
 import to from 'await-to-js';

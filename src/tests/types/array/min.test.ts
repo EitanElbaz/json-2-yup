@@ -1,6 +1,6 @@
 import to from 'await-to-js';
 import { toYup } from 'src/toYup';
-import ArrayTypeSchema from 'src/types/ArrayTypeSchema';
+import { ArrayTypeSchema } from 'src/types';
 import { ArraySchema, ValidationError } from 'yup';
 
 const errorMsg = 'Min 2 items';

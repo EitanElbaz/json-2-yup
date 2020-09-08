@@ -1,7 +1,7 @@
 import to from 'await-to-js';
 import { toYup } from 'src/toYup';
 import { DateSchema } from 'yup';
-import DateTypeSchema from 'src/types/DateTypeSchema';
+import { DateTypeSchema } from 'src/types';;
 import { toUnix } from 'src/lib/date';
 
 const errorMsg = 'Date is required';

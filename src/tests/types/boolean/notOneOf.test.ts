@@ -1,7 +1,7 @@
 import { BooleanSchema, ValidationError } from 'yup';
 import to from 'await-to-js';
 import { toYup } from 'src/toYup';
-import BooleanTypeSchema from 'src/types/BooleanTypeSchema';
+import { BooleanTypeSchema } from 'src/types';
 
 const errorMsg = 'Should not be false';
 

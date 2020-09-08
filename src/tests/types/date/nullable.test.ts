@@ -1,6 +1,6 @@
 import { DateSchema, NumberSchema } from 'yup';
 import { toYup } from 'src/toYup';
-import DateTypeSchema from 'src/types/DateTypeSchema';
+import { DateTypeSchema } from 'src/types';;
 
 const schemaNullable: DateTypeSchema = {
     type: 'date',

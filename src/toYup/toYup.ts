@@ -4,13 +4,15 @@ import toYupBoolean from './toYupBoolean';
 import toYupDate from './toYupDate';
 import toYupObject from './toYupObject';
 import toYupArray from './toYupArray';
-import YupTypeSchema from '../types/YupTypeSchema';
-import StringTypeSchema from '../types/StringTypeSchema';
-import NumberTypeSchema from '../types/NumberTypeSchema';
-import BooleanTypeSchema from '../types/BooleanTypeSchema';
-import DateTypeSchema from '../types/DateTypeSchema';
-import ObjectTypeSchema from '../types/ObjectTypeSchema';
-import ArrayTypeSchema from '../types/ArrayTypeSchema';
+import {
+    ArrayTypeSchema,
+    BooleanTypeSchema,
+    DateTypeSchema,
+    NumberTypeSchema,
+    ObjectTypeSchema,
+    StringTypeSchema,
+    YupTypeSchema,
+} from '../types';
 
 const toYup = (schema: YupTypeSchema) => {
     switch (schema.type) {

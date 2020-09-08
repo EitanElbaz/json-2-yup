@@ -1,6 +1,6 @@
 import { NumberSchema } from 'yup';
 import { toYup } from 'src/toYup';
-import NumberTypeSchema from 'src/types/NumberTypeSchema';
+import { NumberTypeSchema } from 'src/types';
 
 const schemaNullable: NumberTypeSchema = {
     type: 'number',
