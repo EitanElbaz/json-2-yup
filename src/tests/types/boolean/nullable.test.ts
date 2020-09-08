@@ -1,6 +1,6 @@
 import { BooleanSchema } from 'yup';
 import { toYup } from 'src/toYup';
-import BooleanTypeSchema from 'src/types/BooleanTypeSchema';
+import { BooleanTypeSchema } from 'src/types';
 
 const schemaNullable: BooleanTypeSchema = {
     type: 'boolean',

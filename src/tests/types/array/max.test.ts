@@ -1,5 +1,5 @@
 import { toYup } from 'src/toYup';
-import ArrayTypeSchema from 'src/types/ArrayTypeSchema';
+import { ArrayTypeSchema } from 'src/types';
 import to from 'await-to-js';
 import { ArraySchema, ValidationError } from 'yup';
 

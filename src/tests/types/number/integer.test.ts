@@ -1,7 +1,7 @@
 import { NumberSchema, ValidationError } from 'yup';
 import to from 'await-to-js';
 import { toYup } from 'src/toYup';
-import NumberTypeSchema from 'src/types/NumberTypeSchema';
+import { NumberTypeSchema } from 'src/types';
 
 const errorMsg = 'Must be integer';
 

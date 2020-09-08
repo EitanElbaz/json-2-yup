@@ -1,6 +1,6 @@
-import { ArraySchema, DateSchema } from 'yup';
+import { ArraySchema } from 'yup';
 import { toYup } from 'src/toYup';
-import ArrayTypeSchema from 'src/types/ArrayTypeSchema';
+import { ArrayTypeSchema } from 'src/types';
 
 const schemaNullable: ArrayTypeSchema = {
     type: 'array',

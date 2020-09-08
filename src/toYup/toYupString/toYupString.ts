@@ -3,7 +3,7 @@ import { StringSchema } from 'yup';
 import { StringTypeSchema } from '../../types';
 import withWhen from '../withWhen';
 
-const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
+const toYupString = (jsonSchema: StringTypeSchema, forceRequired?: boolean): StringSchema => {
     let yupSchema = yup.string();
 
     if (jsonSchema.maxLength != null) {
@@ -46,7 +46,7 @@ const toYupString = (jsonSchema: StringTypeSchema): StringSchema => {
         yupSchema = withNullable(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.required === true) {
+    if (jsonSchema.required === true || forceRequired === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
     }
 

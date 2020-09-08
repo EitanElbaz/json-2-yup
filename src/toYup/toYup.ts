@@ -4,28 +4,30 @@ import toYupBoolean from './toYupBoolean';
 import toYupDate from './toYupDate';
 import toYupObject from './toYupObject';
 import toYupArray from './toYupArray';
-import YupTypeSchema from '../types/YupTypeSchema';
-import StringTypeSchema from '../types/StringTypeSchema';
-import NumberTypeSchema from '../types/NumberTypeSchema';
-import BooleanTypeSchema from '../types/BooleanTypeSchema';
-import DateTypeSchema from '../types/DateTypeSchema';
-import ObjectTypeSchema from '../types/ObjectTypeSchema';
-import ArrayTypeSchema from '../types/ArrayTypeSchema';
+import {
+    ArrayTypeSchema,
+    BooleanTypeSchema,
+    DateTypeSchema,
+    NumberTypeSchema,
+    ObjectTypeSchema,
+    StringTypeSchema,
+    YupTypeSchema,
+} from '../types';
 
-const toYup = (schema: YupTypeSchema) => {
+const toYup = (schema: YupTypeSchema, forceRequired: boolean = false) => {
     switch (schema.type) {
         case 'string':
-            return toYupString(schema as StringTypeSchema);
+            return toYupString(schema as StringTypeSchema, forceRequired);
         case 'number':
-            return toYupNumber(schema as NumberTypeSchema);
+            return toYupNumber(schema as NumberTypeSchema, forceRequired);
         case 'boolean':
-            return toYupBoolean(schema as BooleanTypeSchema);
+            return toYupBoolean(schema as BooleanTypeSchema, forceRequired);
         case 'date':
-            return toYupDate(schema as DateTypeSchema);
+            return toYupDate(schema as DateTypeSchema, forceRequired);
         case 'object':
-            return toYupObject(schema as ObjectTypeSchema);
+            return toYupObject(schema as ObjectTypeSchema, forceRequired);
         case 'array':
-            return toYupArray(schema as ArrayTypeSchema);
+            return toYupArray(schema as ArrayTypeSchema, forceRequired);
     }
 };
 

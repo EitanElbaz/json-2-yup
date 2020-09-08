@@ -1,10 +1,10 @@
 import * as yup from 'yup';
 import { ArraySchema, Schema } from 'yup';
 import withWhen from '../withWhen';
-import { ArrayTypeSchema } from '../../types';
+import { ArrayTypeSchema, YupTypeSchema } from '../../types';
 import { toYup } from '..';
 
-const toYupArray = <T>(jsonSchema: ArrayTypeSchema): ArraySchema<T> => {
+const toYupArray = <T>(jsonSchema: ArrayTypeSchema, forceRequired?: boolean): ArraySchema<T> => {
     let yupSchema = yup.array<T>();
 
     if (jsonSchema.of != null) {
@@ -19,7 +19,7 @@ const toYupArray = <T>(jsonSchema: ArrayTypeSchema): ArraySchema<T> => {
         yupSchema = withMax(yupSchema, jsonSchema);
     }
 
-    if (jsonSchema.required === true) {
+    if (jsonSchema.required === true || forceRequired === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
     }
 
