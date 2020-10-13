@@ -1,6 +1,6 @@
 {
   "name": "json-2-yup",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "a",
   "main": "./dist/index.js",
   "typings": "./typings/index.d.ts",
@@ -16,6 +16,7 @@
     "clean": "rm -rf ./{dist,typings}"
   },
   "dependencies": {
+    "date-fns": "^2.16.1",
     "set-value": "^3.0.2",
     "yup": "^0.29.3"
   },

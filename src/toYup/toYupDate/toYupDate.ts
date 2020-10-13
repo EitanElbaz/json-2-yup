@@ -1,7 +1,8 @@
 import * as yup from 'yup';
 import { DateSchema } from 'yup';
+import subMonths from 'date-fns/subMonths';
 import withWhen from '../withWhen';
-import { DateTypeSchema, YupTypeSchema } from '../../types';
+import { DateTypeSchema } from '../../types';
 import { valueToDate } from 'src/lib/date';
 
 const toYupDate = (jsonSchema: DateTypeSchema, forceRequired?: boolean): DateSchema => {
@@ -13,6 +14,14 @@ const toYupDate = (jsonSchema: DateTypeSchema, forceRequired?: boolean): DateSch
 
     if (jsonSchema.max != null) {
         yupSchema = withMax(yupSchema, jsonSchema);
+    }
+
+    if (jsonSchema.minAgeMonths != null) {
+        yupSchema = withMinAgeMonths(yupSchema, jsonSchema);
+    }
+
+    if (jsonSchema.maxAgeMonths != null) {
+        yupSchema = withMaxAgeMonths(yupSchema, jsonSchema);
     }
 
     if (jsonSchema.required === true || forceRequired === true) {
@@ -32,22 +41,58 @@ const toYupDate = (jsonSchema: DateTypeSchema, forceRequired?: boolean): DateSch
     return yupSchema;
 };
 
+function withMinDate(schema: DateSchema, dateValue: Date, errorMessage?: string): DateSchema {
+    return schema.min(dateValue, errorMessage);
+}
+
 function withMin(schema: DateSchema, jsonSchema: DateTypeSchema): DateSchema {
     let date = valueToDate(jsonSchema.min);
 
     if (date != null) {
-        return schema.min(date, jsonSchema?.errors?.min);
+        return withMinDate(schema, date, jsonSchema?.errors?.min);
     }
 
     return schema;
+}
+
+function withMaxDate(schema: DateSchema, dateValue: Date, errorMessage?: string): DateSchema {
+    return schema.max(dateValue, errorMessage);
 }
 
 function withMax(schema: DateSchema, jsonSchema: DateTypeSchema): DateSchema {
     let date = valueToDate(jsonSchema.max);
 
     if (date != null) {
-        return schema.max(date, jsonSchema?.errors?.max);
+        return withMaxDate(schema, date, jsonSchema?.errors?.max);
     }
+    return schema;
+}
+
+function withMinAgeMonths(schema: DateSchema, jsonSchema: DateTypeSchema): DateSchema {
+    if (typeof jsonSchema.minAgeMonths === 'number') {
+        const date = subMonths(new Date(), Math.round(jsonSchema.minAgeMonths));
+        // end of day so any date on that day is valid in the yup max check
+        date.setHours(23);
+        date.setMinutes(59);
+        date.setSeconds(59);
+        date.setMilliseconds(0);
+        return withMaxDate(schema, date, jsonSchema?.errors?.minAgeMonths);
+    }
+
+    return schema;
+}
+
+function withMaxAgeMonths(schema: DateSchema, jsonSchema: DateTypeSchema): DateSchema {
+    if (typeof jsonSchema.maxAgeMonths === 'number') {
+        const date = subMonths(new Date(), Math.round(jsonSchema.maxAgeMonths));
+        // start of day so any date on that day is valid in the yup min check
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        date.setMilliseconds(0);
+        return withMinDate(schema, date, jsonSchema?.errors?.maxAgeMonths);
+    }
+
     return schema;
 }
 

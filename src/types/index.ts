@@ -48,8 +48,29 @@ export type DateTypeSchema = YupTypeSchema & {
      */
     max?: number | string;
 
+    /**
+     * Min age of a date as a number of months.
+     *
+     * For example, a value of 5 would mean that the selected date has to be at least
+     * 5 months old.
+     */
+    minAgeMonths?: number;
+
+    /**
+     * Max age of a date as a number of months.
+     *
+     * For example, a value of 5 would mean that the selected date can be no more than
+     * 5 months old.
+     */
+    maxAgeMonths?: number;
+
     nullable?: boolean;
-    errors?: YupTypeErrors & { min?: string; max?: string };
+    errors?: YupTypeErrors & {
+        min?: string;
+        max?: string;
+        minAgeMonths?: string;
+        maxAgeMonths?: string;
+    };
     when?: WhenSchema<DateTypeSchema>[];
 };
 
