@@ -1,6 +1,6 @@
 {
   "name": "json-2-yup",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "a",
   "main": "./dist/index.js",
   "typings": "./typings/index.d.ts",
