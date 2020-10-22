@@ -64,6 +64,14 @@ export type DateTypeSchema = YupTypeSchema & {
      */
     maxAgeMonths?: number;
 
+    /**
+     * https://date-fns.org/v2.16.1/docs/format
+     *
+     * Setting this property will attempt to transform a string input into a date object.
+     * YUP transforms only work when a field is not marked as strict.
+     */
+    inputFormat?: string;
+
     nullable?: boolean;
     errors?: YupTypeErrors & {
         min?: string;

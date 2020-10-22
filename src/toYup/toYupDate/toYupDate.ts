@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import { DateSchema } from 'yup';
+import parse from 'date-fns/parse';
 import subMonths from 'date-fns/subMonths';
 import withWhen from '../withWhen';
 import { DateTypeSchema } from '../../types';
@@ -7,6 +8,18 @@ import { valueToDate } from 'src/lib/date';
 
 const toYupDate = (jsonSchema: DateTypeSchema, forceRequired?: boolean): DateSchema => {
     let yupSchema = yup.date();
+
+    if (jsonSchema.inputFormat != null) {
+        yupSchema = yupSchema.transform((value, originalValue) => {
+            if (typeof originalValue === 'string') {
+                try {
+                    return parse(originalValue, jsonSchema.inputFormat, new Date());
+                } catch (e) {}
+            }
+
+            return value;
+        });
+    }
 
     if (jsonSchema.min != null) {
         yupSchema = withMin(yupSchema, jsonSchema);
