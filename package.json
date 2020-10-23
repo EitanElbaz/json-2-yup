@@ -1,6 +1,6 @@
 {
   "name": "json-2-yup",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "a",
   "main": "./dist/index.js",
   "typings": "./typings/index.d.ts",
@@ -13,6 +13,7 @@
     "test:coverage": "yarn test --collectCoverage && jest-coverage-badges --output './test-badges'",
     "prebuild": "yarn clean",
     "build": "NODE_ENV=production webpack -p",
+    "build:stats": "yarn build --profile --json > stats.json",
     "clean": "rm -rf ./{dist,typings}"
   },
   "dependencies": {
@@ -35,5 +36,8 @@
     "typescript": "^3.9.7",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
+  },
+  "peerDependencies": {
+    "yup": "^0.29.3"
   }
 }

@@ -5,3 +5,4 @@ export { default as toYupNumber } from './toYupNumber';
 export { default as toYupObject } from './toYupObject';
 export { default as toYupString } from './toYupString';
 export { default as toYupDate } from './toYupDate';
+export { default as toYupCustom } from './toYupCustom';

@@ -1,14 +1,18 @@
 import * as yup from 'yup';
 import { ArraySchema, Schema } from 'yup';
 import withWhen from '../withWhen';
-import { ArrayTypeSchema, YupTypeSchema } from '../../types';
+import { ArrayTypeSchema, BuildCustomSchema, YupTypeSchema } from '../../types';
 import { toYup } from '..';
 
-const toYupArray = <T>(jsonSchema: ArrayTypeSchema, forceRequired?: boolean): ArraySchema<T> => {
+const toYupArray = <T>(
+    jsonSchema: ArrayTypeSchema,
+    forceRequired?: boolean,
+    builder?: BuildCustomSchema,
+): ArraySchema<T> => {
     let yupSchema = yup.array<T>();
 
     if (jsonSchema.of != null) {
-        yupSchema = withOf(yupSchema, jsonSchema);
+        yupSchema = withOf(yupSchema, jsonSchema, forceRequired, builder);
     }
 
     if (jsonSchema.min != null) {
@@ -35,8 +39,13 @@ const toYupArray = <T>(jsonSchema: ArrayTypeSchema, forceRequired?: boolean): Ar
     return yupSchema;
 };
 
-function withOf(schema: ArraySchema<any>, jsonSchema: ArrayTypeSchema): ArraySchema<any> {
-    return schema.of(toYup(jsonSchema.of) as Schema<any>);
+function withOf(
+    schema: ArraySchema<any>,
+    jsonSchema: ArrayTypeSchema,
+    forceRequired: boolean,
+    builder: BuildCustomSchema,
+): ArraySchema<any> {
+    return schema.of(toYup(jsonSchema.of, forceRequired, builder) as Schema<any>);
 }
 
 function withMin(schema: ArraySchema<any>, jsonSchema: ArrayTypeSchema): ArraySchema<any> {
