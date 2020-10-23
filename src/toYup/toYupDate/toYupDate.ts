@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 import { DateSchema } from 'yup';
-import parse from 'date-fns/parse';
-import subMonths from 'date-fns/subMonths';
+import { parse, subMonths } from 'date-fns';
 import withWhen from '../withWhen';
 import { DateTypeSchema } from '../../types';
 import { valueToDate } from 'src/lib/date';
