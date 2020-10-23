@@ -32,11 +32,11 @@ const toYup = (
         case 'date':
             return toYupDate(schema as DateTypeSchema, forceRequired);
         case 'object':
-            return toYupObject(schema as ObjectTypeSchema, forceRequired);
+            return toYupObject(schema as ObjectTypeSchema, forceRequired, customBuilder);
         case 'array':
-            return toYupArray(schema as ArrayTypeSchema, forceRequired);
+            return toYupArray(schema as ArrayTypeSchema, forceRequired, customBuilder);
         case 'custom':
-            return toYupCustom(schema as CustomTypeSchema, customBuilder);
+            return toYupCustom(schema as CustomTypeSchema, customBuilder, forceRequired);
     }
 };
 

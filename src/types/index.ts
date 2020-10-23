@@ -1,4 +1,4 @@
-import { Schema } from 'yup';
+import { MixedSchema } from 'yup';
 
 export type DataType = 'string' | 'number' | 'boolean' | 'array' | 'object' | 'date' | 'custom';
 
@@ -8,7 +8,8 @@ export type TypeSchemas =
     | BooleanTypeSchema
     | DateTypeSchema
     | ObjectTypeSchema
-    | ArrayTypeSchema;
+    | ArrayTypeSchema
+    | CustomTypeSchema;
 
 export type YupTypeErrors = {
     required?: string;
@@ -34,10 +35,10 @@ export type ArrayTypeSchema = YupTypeSchema & {
     when?: WhenSchema<ArrayTypeSchema>[];
 };
 
-export type CustomTypeSchema = Pick<YupTypeSchema, 'type'> & {
+export type CustomTypeSchema = Pick<YupTypeSchema, 'type' | 'required' | 'errors'> & {
     type: 'custom';
     [key: string]: unknown;
-    errors?: {
+    errors?: YupTypeErrors & {
         [key: string]: string;
     };
 };
@@ -166,4 +167,4 @@ export type WhenSchema<T extends YupTypeSchema> = {
     otherwise?: T;
 };
 
-export type BuildCustomSchema = (schema: CustomTypeSchema) => Schema<any>;
+export type BuildCustomSchema = (schema: CustomTypeSchema, forceRequired?: boolean) => MixedSchema;
