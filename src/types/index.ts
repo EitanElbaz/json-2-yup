@@ -1,4 +1,4 @@
-import { MixedSchema } from 'yup';
+import { Schema } from 'yup';
 
 export type DataType = 'string' | 'number' | 'boolean' | 'array' | 'object' | 'date' | 'custom';
 
@@ -167,4 +167,7 @@ export type WhenSchema<T extends YupTypeSchema> = {
     otherwise?: T;
 };
 
-export type BuildCustomSchema = (schema: CustomTypeSchema, forceRequired?: boolean) => MixedSchema;
+export type BuildCustomSchema = <T extends CustomTypeSchema>(
+    schema: T,
+    forceRequired?: boolean,
+) => Schema<any>;
