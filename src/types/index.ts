@@ -1,4 +1,6 @@
-export type DataType = 'string' | 'number' | 'boolean' | 'array' | 'object' | 'date';
+import { Schema } from 'yup';
+
+export type DataType = 'string' | 'number' | 'boolean' | 'array' | 'object' | 'date' | 'custom';
 
 export type TypeSchemas =
     | StringTypeSchema
@@ -7,6 +9,17 @@ export type TypeSchemas =
     | DateTypeSchema
     | ObjectTypeSchema
     | ArrayTypeSchema;
+
+export type YupTypeErrors = {
+    required?: string;
+};
+
+export type YupTypeSchema = {
+    type: DataType;
+    required?: boolean;
+    strict?: boolean;
+    errors?: YupTypeErrors;
+};
 
 export type ArrayTypeSchema = YupTypeSchema & {
     type: 'array';
@@ -19,6 +32,14 @@ export type ArrayTypeSchema = YupTypeSchema & {
         max?: string;
     };
     when?: WhenSchema<ArrayTypeSchema>[];
+};
+
+export type CustomTypeSchema = Pick<YupTypeSchema, 'type'> & {
+    type: 'custom';
+    [key: string]: unknown;
+    errors?: {
+        [key: string]: string;
+    };
 };
 
 export type BooleanTypeSchema = YupTypeSchema & {
@@ -145,13 +166,4 @@ export type WhenSchema<T extends YupTypeSchema> = {
     otherwise?: T;
 };
 
-export type YupTypeErrors = {
-    required?: string;
-};
-
-export type YupTypeSchema = {
-    type: DataType;
-    required?: boolean;
-    strict?: boolean;
-    errors?: YupTypeErrors;
-};
+export type BuildCustomSchema = (schema: CustomTypeSchema) => Schema<any>;
