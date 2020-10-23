@@ -1,6 +1,6 @@
 import to from 'await-to-js';
 import { toYup } from 'src/toYup';
-import subMonths from 'date-fns/subMonths';
+import { subMonths } from 'date-fns';
 import { DateSchema } from 'yup';
 import { DateTypeSchema } from 'src/types';
 

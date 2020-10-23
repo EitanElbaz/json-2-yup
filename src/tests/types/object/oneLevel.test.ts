@@ -1,7 +1,8 @@
-import { toYup } from 'src/toYup';
-import { ObjectSchema, ValidationError } from 'yup';
-import { ObjectTypeSchema } from 'src/types';
 import to from 'await-to-js';
+import * as yup from 'yup';
+import { ObjectSchema, ValidationError } from 'yup';
+import { toYup } from 'src/toYup';
+import { BuildCustomSchema, CustomTypeSchema, ObjectTypeSchema } from 'src/types';
 
 const schema: ObjectTypeSchema = {
     type: 'object',
@@ -91,10 +92,17 @@ const schema: ObjectTypeSchema = {
                 required: 'dates required',
             },
         },
+        custom: {
+            type: 'custom',
+        },
     },
 };
 
-const yupSchema = toYup(schema) as ObjectSchema;
+const buildCustom: BuildCustomSchema = (schema: CustomTypeSchema, forceRequired) => {
+    return yup.string().required('custom required').min(5, 'custom min 5 chars');
+};
+
+const yupSchema = toYup(schema, false, buildCustom) as ObjectSchema;
 
 test('Object schema expect success', async () => {
     expect(
@@ -105,6 +113,7 @@ test('Object schema expect success', async () => {
             count: 6,
             numbers: [1, 2],
             dates: [new Date()],
+            custom: 'hello',
         }),
     ).toBe(true);
 });
@@ -119,6 +128,7 @@ test('Object schema expect too short error messages', async () => {
                 count: 4,
                 numbers: [2],
                 dates: [],
+                custom: 'what',
             },
             { abortEarly: false },
         ),
@@ -130,6 +140,7 @@ test('Object schema expect too short error messages', async () => {
     expect(yupError.errors.includes('count too low')).toBe(true);
     expect(yupError.errors.includes('must have at least 2 numbers')).toBe(true);
     expect(yupError.errors.includes('min 1 date')).toBe(true);
+    expect(yupError.errors.includes('custom min 5 chars')).toBe(true);
 });
 
 test('Object schema expect too long error messages', async () => {
@@ -162,6 +173,7 @@ test('Object schema expect required error messages', async () => {
                 email: '',
                 count: undefined,
                 numbers: undefined,
+                custom: undefined,
             },
             { abortEarly: false },
         ),
@@ -173,6 +185,7 @@ test('Object schema expect required error messages', async () => {
     expect(yupError.errors.includes('count required')).toBe(true);
     expect(yupError.errors.includes('numbers required')).toBe(true);
     expect(yupError.errors.includes('dates required')).toBe(true);
+    expect(yupError.errors.includes('custom required')).toBe(true);
 });
 
 test('Object schema expect sub numbers array min error message', async () => {
