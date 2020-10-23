@@ -5,7 +5,13 @@ const toYupCustom = (
     builder: BuildCustomSchema,
     forceRequired?: boolean,
 ) => {
-    return builder(jsonSchema, forceRequired);
+    if (builder != null) {
+        return builder(jsonSchema, forceRequired);
+    }
+
+    console.warn('You need to pass a custom schema builder function for custom schemas to work.');
+
+    return null;
 };
 
 export default toYupCustom;
