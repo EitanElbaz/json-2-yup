@@ -38,6 +38,14 @@ module.exports = function () {
                 },
             ],
         },
+        externals: {
+            yup: {
+                commonjs: 'yup',
+                commonjs2: 'yup',
+                amd: 'yup',
+                root: 'yup',
+            },
+        },
         plugins: [
             new webpack.EnvironmentPlugin({
                 NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
