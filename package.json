@@ -13,7 +13,7 @@
     "test:coverage": "yarn test --collectCoverage && jest-coverage-badges --output './test-badges'",
     "prebuild": "yarn clean",
     "build": "NODE_ENV=production webpack -p",
-    "build:stats": "yarn build --profile --json > compilation-stats.json",
+    "build:stats": "yarn build --profile --json > stats.json",
     "clean": "rm -rf ./{dist,typings}"
   },
   "dependencies": {
