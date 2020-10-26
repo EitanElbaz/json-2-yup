@@ -1,6 +1,6 @@
 import to from 'await-to-js';
 import { toYup } from 'src/toYup';
-import { BuildCustomSchema, CustomTypeSchema, NumberTypeSchema } from 'src/types';
+import { BuildCustomSchema, CustomTypeSchema } from 'src/types';
 import { NumberSchema, ValidationError } from 'yup';
 import * as yup from 'yup';
 
@@ -12,7 +12,7 @@ declare module 'yup' {
     }
 }
 
-yup.addMethod<yup.StringSchema<string>>(yup.number, 'myCustomFunc', function (errMessage: string) {
+yup.addMethod<yup.NumberSchema<number>>(yup.number, 'myCustomFunc', function (errMessage: string) {
     return this.test('myCustomFunc', errMessage, async function (value: number) {
         return value >= 5;
     });

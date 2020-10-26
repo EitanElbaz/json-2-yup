@@ -167,7 +167,4 @@ export type WhenSchema<T extends YupTypeSchema> = {
     otherwise?: T;
 };
 
-export type BuildCustomSchema = <T extends CustomTypeSchema>(
-    schema: T,
-    forceRequired?: boolean,
-) => Schema<any>;
+export type BuildCustomSchema = (schema: CustomTypeSchema, forceRequired?: boolean) => Schema<any>;
