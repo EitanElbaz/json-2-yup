@@ -6,7 +6,8 @@ const emptyObjectSchema: ObjectTypeSchema = { type: 'object', properties: {} };
 
 const convertPropertyKeypaths = (schema: ObjectTypeSchema): ObjectTypeSchema => {
     if (schema.properties) {
-        const keys = Object.keys(schema.properties);
+        const newSchema = JSON.parse(JSON.stringify(schema));
+        const keys = Object.keys(newSchema.properties);
         keys.forEach((key) => {
             if (key.indexOf('.') !== -1) {
                 const fullPathParts = [];
@@ -19,27 +20,29 @@ const convertPropertyKeypaths = (schema: ObjectTypeSchema): ObjectTypeSchema => 
                 });
 
                 fullPathParts.forEach((part: string, fIndex) => {
-                    const current: ObjectTypeSchema = get(schema, part, emptyObjectSchema);
+                    const current: ObjectTypeSchema = get(newSchema, part, emptyObjectSchema);
                     const lastPart = part.split('.').pop();
                     const currentKeys = Object.keys(current.properties);
 
                     if (currentKeys.indexOf(lastPart) === -1) {
                         const isLast = fIndex === fullPathParts.length - 1;
                         if (isLast) {
-                            set(schema, part, {
-                                ...schema.properties[key],
+                            set(newSchema, part, {
+                                ...newSchema.properties[key],
                             });
                         } else {
-                            set(schema, part, {
+                            set(newSchema, part, {
                                 ...current,
                                 properties: { ...current.properties },
                             });
                         }
                     }
                 });
-                delete schema.properties[key];
+                delete newSchema.properties[key];
             }
         });
+
+        return newSchema;
     }
 
     return schema;

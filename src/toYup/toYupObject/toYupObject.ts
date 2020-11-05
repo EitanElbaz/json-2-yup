@@ -11,7 +11,7 @@ const toYupObject = (
 ): ObjectSchema => {
     const fields: ObjectSchemaDefinition<any> = {};
 
-    const convertedSchema = convertPropertyKeypaths({ ...jsonSchema });
+    const convertedSchema = convertPropertyKeypaths(jsonSchema);
     const fieldNames = Object.keys(convertedSchema.properties);
 
     fieldNames.forEach((fieldName) => {
