@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { ArraySchema, Schema } from 'yup';
 import withWhen from '../withWhen';
 import { ArrayTypeSchema, BuildCustomSchema, YupTypeSchema } from '../../types';
-import { toYup } from '..';
+import { toYup, withTypeError } from '..';
 
 const toYupArray = <T>(
     jsonSchema: ArrayTypeSchema,
@@ -29,6 +29,10 @@ const toYupArray = <T>(
 
     if (jsonSchema.nullable != null) {
         yupSchema = withNullable(yupSchema, jsonSchema);
+    }
+
+    if (jsonSchema?.errors?.typeError != null) {
+        yupSchema = withTypeError(yupSchema, jsonSchema);
     }
 
     if (jsonSchema.strict) {

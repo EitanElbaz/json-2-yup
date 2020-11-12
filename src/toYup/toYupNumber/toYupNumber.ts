@@ -2,6 +2,7 @@ import * as yup from 'yup';
 import { NumberSchema } from 'yup';
 import { NumberTypeSchema } from '../../types';
 import withWhen from '../withWhen';
+import { withTypeError } from 'src/toYup';
 
 const toYupNumber = (jsonSchema: NumberTypeSchema, forceRequired?: boolean): NumberSchema => {
     let yupSchema = yup.number();
@@ -53,6 +54,10 @@ const toYupNumber = (jsonSchema: NumberTypeSchema, forceRequired?: boolean): Num
 
     if (jsonSchema.required === true || forceRequired === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
+    }
+
+    if (jsonSchema?.errors?.typeError != null) {
+        yupSchema = withTypeError(yupSchema, jsonSchema);
     }
 
     if (jsonSchema.strict) {

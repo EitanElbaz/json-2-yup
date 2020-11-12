@@ -4,16 +4,19 @@ import { parse, subMonths } from 'date-fns';
 import withWhen from '../withWhen';
 import { DateTypeSchema } from '../../types';
 import { valueToDate } from 'src/lib/date';
+import { withTypeError } from 'src/toYup';
 
 const toYupDate = (jsonSchema: DateTypeSchema, forceRequired?: boolean): DateSchema => {
     let yupSchema = yup.date();
 
     if (jsonSchema.inputFormat != null) {
         yupSchema = yupSchema.transform((value, originalValue) => {
-            if (typeof originalValue === 'string') {
+            if (typeof originalValue === 'string' && jsonSchema.inputFormat != null) {
                 try {
                     return parse(originalValue, jsonSchema.inputFormat, new Date());
-                } catch (e) {}
+                } catch (e) {
+                    return null;
+                }
             }
 
             return value;
@@ -38,6 +41,10 @@ const toYupDate = (jsonSchema: DateTypeSchema, forceRequired?: boolean): DateSch
 
     if (jsonSchema.required === true || forceRequired === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
+    }
+
+    if (jsonSchema?.errors?.typeError != null) {
+        yupSchema = withTypeError(yupSchema, jsonSchema);
     }
 
     if (jsonSchema.nullable != null) {
