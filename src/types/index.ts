@@ -13,6 +13,7 @@ export type TypeSchemas =
 
 export type YupTypeErrors = {
     required?: string;
+    typeError?: string;
 };
 
 export type YupTypeSchema = {
