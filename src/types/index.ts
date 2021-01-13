@@ -163,7 +163,7 @@ export type StringTypeSchema = YupTypeSchema & {
 
 export type WhenSchema<T extends YupTypeSchema> = {
     fields: string | string[];
-    is: unknown;
+    is: string | number | boolean | any[] | object | YupTypeSchema;
     then: T;
     otherwise?: T;
 };
