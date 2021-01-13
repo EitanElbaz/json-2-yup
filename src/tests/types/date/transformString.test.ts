@@ -15,6 +15,7 @@ test('required expect fail', async () => {
     expect(yupSchema.isValidSync(undefined)).toBe(false);
     expect(yupSchema.isValidSync(null)).toBe(false);
     expect(yupSchema.isValidSync('01/01/2018')).toBe(false); //doesn't match the input format
+    expect(yupSchema.isValidSync('2018-18-01')).toBe(false); //completely invalid date for the format
 });
 
 test('required expect pass', async () => {

@@ -2,6 +2,7 @@ import * as yup from 'yup';
 import { StringSchema } from 'yup';
 import { StringTypeSchema } from '../../types';
 import withWhen from '../withWhen';
+import { withTypeError } from 'src/toYup';
 
 const toYupString = (jsonSchema: StringTypeSchema, forceRequired?: boolean): StringSchema => {
     let yupSchema = yup.string();
@@ -48,6 +49,10 @@ const toYupString = (jsonSchema: StringTypeSchema, forceRequired?: boolean): Str
 
     if (jsonSchema.required === true || forceRequired === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
+    }
+
+    if (jsonSchema?.errors?.typeError != null) {
+        yupSchema = withTypeError(yupSchema, jsonSchema);
     }
 
     if (jsonSchema.strict) {

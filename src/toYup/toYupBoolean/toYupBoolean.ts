@@ -2,6 +2,7 @@ import * as yup from 'yup';
 import { BooleanSchema } from 'yup';
 import { BooleanTypeSchema } from '../../types';
 import withWhen from '../withWhen';
+import { withTypeError } from 'src/toYup';
 
 const toYupBoolean = (jsonSchema: BooleanTypeSchema, forceRequired?: boolean): BooleanSchema => {
     let yupSchema = yup.boolean();
@@ -20,6 +21,10 @@ const toYupBoolean = (jsonSchema: BooleanTypeSchema, forceRequired?: boolean): B
 
     if (jsonSchema.required === true || forceRequired === true) {
         yupSchema = withRequired(yupSchema, jsonSchema);
+    }
+
+    if (jsonSchema?.errors?.typeError != null) {
+        yupSchema = withTypeError(yupSchema, jsonSchema);
     }
 
     if (jsonSchema.strict) {
